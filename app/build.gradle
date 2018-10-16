@@ -10,6 +10,15 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+//    //fix lỗi butterknife
+//    packagingOptions {
+//        exclude 'META-INF/services/javax.annotation.processing.Processor'
+//    }
+
     buildTypes {
         release {
             minifyEnabled false

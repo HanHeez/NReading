@@ -1,10 +1,11 @@
 package com.gtv.hanhee.novelreading.Ui.Presenter;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.gtv.hanhee.novelreading.Api.BookApi;
-import com.gtv.hanhee.novelreading.Model.PlayerList;
+import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.Ui.Contract.MainContract;
 
 import javax.inject.Inject;
@@ -24,13 +25,13 @@ public class MainActivityPresenter implements MainContract.Presenter {
         this.bookApi = bookApi;
     }
 
-    public void getPlayerList(){
-        bookApi.getPlayerList("387699584").subscribeOn(Schedulers.io())
+    public void getRecommend(){
+        bookApi.getRecommend("male").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<PlayerList>() {
+                .subscribe(new Observer<Recommend>() {
                     @Override
-                    public void onNext(PlayerList playerList) {
-
+                    public void onNext(Recommend recommend) {
+//                        Log.d("check", recommend.books.toString());
                     }
 
                     @Override
