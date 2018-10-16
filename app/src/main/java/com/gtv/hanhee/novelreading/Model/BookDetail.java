@@ -19,8 +19,8 @@ public class BookDetail implements Serializable {
      * lastChapter : 请安装【追书神器】，本应用已停用
      * latelyFollower : 2385
      * longIntro : 您当前所使用的软件已改名为【追书神器】。
-     请搜索“追书神器”下载安装最新版【追书神器】。
-     无广告；不闪退；章节更新自动通知。
+     * 请搜索“追书神器”下载安装最新版【追书神器】。
+     * 无广告；不闪退；章节更新自动通知。
      * postCount : 111
      * serializeWordCount : 4614
      * site : zhuishuvip

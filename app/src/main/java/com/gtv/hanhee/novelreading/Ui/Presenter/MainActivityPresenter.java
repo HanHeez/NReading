@@ -1,7 +1,6 @@
 package com.gtv.hanhee.novelreading.Ui.Presenter;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.gtv.hanhee.novelreading.Api.BookApi;
@@ -20,12 +19,12 @@ public class MainActivityPresenter implements MainContract.Presenter {
     private BookApi bookApi;
 
     @Inject
-    public MainActivityPresenter(Context context, BookApi bookApi){
+    public MainActivityPresenter(Context context, BookApi bookApi) {
         this.context = context;
         this.bookApi = bookApi;
     }
 
-    public void getRecommend(){
+    public void getRecommend() {
         bookApi.getRecommend("male").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Recommend>() {
@@ -40,7 +39,7 @@ public class MainActivityPresenter implements MainContract.Presenter {
                     }
 
                     @Override
-                    public void onError(Throwable e){
+                    public void onError(Throwable e) {
 
                     }
                 });

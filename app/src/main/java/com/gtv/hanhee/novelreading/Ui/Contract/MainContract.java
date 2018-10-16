@@ -2,11 +2,11 @@ package com.gtv.hanhee.novelreading.Ui.Contract;
 
 public interface MainContract {
 
-    interface View{
+    interface View {
 
     }
 
-    interface Presenter{
+    interface Presenter {
 
     }
 }

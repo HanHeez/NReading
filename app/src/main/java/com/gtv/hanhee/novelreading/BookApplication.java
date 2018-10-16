@@ -9,15 +9,15 @@ public class BookApplication extends Application {
     private static BookApplication sInstance;
     private AppComponent appComponent;
 
+    public static BookApplication getsInstance() {
+        return sInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         this.sInstance = this;
         initComponent();
-    }
-
-    public static BookApplication getsInstance() {
-        return sInstance;
     }
 
     private void initComponent() {
