@@ -11,12 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gtv.hanhee.novelreading.AppComponent;
+import com.gtv.hanhee.novelreading.ReaderApplication;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
 public abstract class BaseFragment extends Fragment {
 
+    public Context mContext;
     Unbinder unbinder;
     private View parentView;
     private FragmentActivity activity;
@@ -31,6 +35,7 @@ public abstract class BaseFragment extends Fragment {
         parentView = inflater.inflate(getLayoutResId(), container, false);
         unbinder = ButterKnife.bind(this, parentView);
         activity = getSupportActivity();
+        mContext = activity;
         this.inflater = inflater;
         return parentView;
     }
@@ -39,7 +44,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        setupActivityComponent(ReaderApplication.getsInstance().getAppComponent());
         initDatas();
         configViews();
     }
@@ -68,6 +73,8 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    protected abstract void setupActivityComponent(AppComponent appComponent);
 
     public FragmentActivity getSupportActivity() {
         return (FragmentActivity) super.getActivity();

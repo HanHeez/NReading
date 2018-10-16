@@ -1,4 +1,4 @@
-package com.gtv.hanhee.novelreading.Adapter;
+package com.gtv.hanhee.novelreading.Ui.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -6,10 +6,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
-public class MyBookListFragmentAdapter extends FragmentStatePagerAdapter {
+public class RecommendTabLayoutAdapter extends FragmentStatePagerAdapter {
     List<Fragment> fragmentList;
 
-    public MyBookListFragmentAdapter(FragmentManager fm, List<Fragment> fragmentList) {
+    public RecommendTabLayoutAdapter(FragmentManager fm, List<Fragment> fragmentList) {
         super(fm);
         this.fragmentList = fragmentList;
     }

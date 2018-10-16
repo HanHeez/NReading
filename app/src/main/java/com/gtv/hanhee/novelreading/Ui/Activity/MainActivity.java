@@ -10,12 +10,12 @@ import android.view.MenuItem;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.gtv.hanhee.novelreading.Adapter.MyBookListFragmentAdapter;
 import com.gtv.hanhee.novelreading.AppComponent;
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
-import com.gtv.hanhee.novelreading.Fragment.MyBookListFragment;
+import com.gtv.hanhee.novelreading.Fragment.RecommendFragment;
 import com.gtv.hanhee.novelreading.Module.MainActivityModule;
 import com.gtv.hanhee.novelreading.R;
+import com.gtv.hanhee.novelreading.Ui.Adapter.RecommendTabLayoutAdapter;
 import com.gtv.hanhee.novelreading.Ui.Component.DaggerMainActivityComponent;
 import com.gtv.hanhee.novelreading.Ui.Contract.MainContract;
 import com.gtv.hanhee.novelreading.Ui.CustomView.TabEntity;
@@ -39,8 +39,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     String[] mDatas = new String[]{"Danh sách", "Cộng đồng", "Phát hiện"};
     List<Fragment> mTabContents;
-    MyBookListFragmentAdapter myBookListFragmentAdapter;
-    MyBookListFragment fragment;
+    RecommendTabLayoutAdapter recommendTabLayoutAdapter;
+
 
     ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     @Inject
@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter.getRecommend();
+//        mPresenter.getRecommend();
     }
 
     @Override
@@ -79,8 +79,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         mIconUnselectIds = new int[mDatas.length];
         mIconSelectIds = new int[mDatas.length];
         mTabContents = new ArrayList<>();
-        myBookListFragmentAdapter = new MyBookListFragmentAdapter(getSupportFragmentManager(), mTabContents);
-        mViewPager.setAdapter(myBookListFragmentAdapter);
+        recommendTabLayoutAdapter = new RecommendTabLayoutAdapter(getSupportFragmentManager(), mTabContents);
+        mViewPager.setAdapter(recommendTabLayoutAdapter);
 
         for (int i = 0; i < mDatas.length; i++) {
             mIconSelectIds[i] = R.drawable.heart_love;
@@ -89,10 +89,10 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         }
 
         for (int i = 0; i < mDatas.length; i++) {
-//              MyBookListFragment fragment = MyBookListFragment.newInstance(data);
-            fragment = new MyBookListFragment();
+//              RecommendFragment fragment = RecommendFragment.newInstance(data);
+            RecommendFragment fragment = new RecommendFragment();
             mTabContents.add(fragment);
-            myBookListFragmentAdapter.notifyDataSetChanged();
+            recommendTabLayoutAdapter.notifyDataSetChanged();
         }
     }
 

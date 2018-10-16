@@ -5,11 +5,11 @@ import android.app.Application;
 import com.gtv.hanhee.novelreading.Module.AppModule;
 import com.gtv.hanhee.novelreading.Module.BookApiModule;
 
-public class BookApplication extends Application {
-    private static BookApplication sInstance;
+public class ReaderApplication extends Application {
+    private static ReaderApplication sInstance;
     private AppComponent appComponent;
 
-    public static BookApplication getsInstance() {
+    public static ReaderApplication getsInstance() {
         return sInstance;
     }
 

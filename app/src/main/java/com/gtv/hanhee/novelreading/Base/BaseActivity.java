@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.gtv.hanhee.novelreading.AppComponent;
-import com.gtv.hanhee.novelreading.BookApplication;
+import com.gtv.hanhee.novelreading.ReaderApplication;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -18,7 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
-        setupActivityComponent(BookApplication.getsInstance().getAppComponent());
+        setupActivityComponent(ReaderApplication.getsInstance().getAppComponent());
         initToolBar();
         initDatas();
         configViews();
