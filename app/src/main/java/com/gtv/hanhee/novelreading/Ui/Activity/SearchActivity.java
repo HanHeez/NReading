@@ -1,5 +1,6 @@
 package com.gtv.hanhee.novelreading.Ui.Activity;
 
+import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.ListPopupWindow;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
 import com.gtv.hanhee.novelreading.Component.DaggerSearchActivityComponent;
+import com.gtv.hanhee.novelreading.Model.BookDetail;
 import com.gtv.hanhee.novelreading.Model.HotWord;
 import com.gtv.hanhee.novelreading.Model.SearchDetail;
 import com.gtv.hanhee.novelreading.R;
@@ -41,7 +43,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import me.gujun.android.taggroup.TagGroup;
 
-public class SearchActivity extends BaseActivity implements SearchContract.View {
+public class SearchActivity extends BaseActivity implements SearchContract.View,SearchResultAdapter.ItemClickListener {
 
     @BindView(R.id.common_toolbar)
     Toolbar mToolbar;
@@ -101,7 +103,7 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new SearchResultAdapter(mContext, mList);
+        mAdapter = new SearchResultAdapter(mContext, mList, this);
         mRecyclerView.setAdapter(mAdapter);
 
         mAutoAdapter = new AutoCompleteAdapter(this, mAutoList);
@@ -143,8 +145,6 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
                 this.hotWords.add(combineHotWords.get(i).getHotWord());
             }
             mTagGroup.setTags(this.translateHotWords);
-
-            Log.d("kiemtra", translateHotWords.size()+ "");
         }
     }
 
@@ -252,4 +252,8 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
             mListPopupWindow.dismiss();
     }
 
+    @Override
+    public void onItemClick(SearchDetail.SearchBooks item) {
+        startActivity(new Intent(SearchActivity.this, BookDetailActivity.class).putExtra("bookId",item._id));
+    }
 }

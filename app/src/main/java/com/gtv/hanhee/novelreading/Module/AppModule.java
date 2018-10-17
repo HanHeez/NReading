@@ -4,12 +4,15 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.gtv.hanhee.novelreading.Api.Support.HeaderInterceptor;
+import com.gtv.hanhee.novelreading.Utils.LogUtils;
 
 import java.util.concurrent.TimeUnit;
 
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 @Module
 public class AppModule {
@@ -21,9 +24,15 @@ public class AppModule {
 
     @Provides
     public OkHttpClient provideOkHttpClient() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new MyLog());
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         OkHttpClient.Builder builder = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS);
+                .connectTimeout(20 * 1000, TimeUnit.MILLISECONDS)
+                .readTimeout(20 * 1000, TimeUnit.MILLISECONDS)
+                .retryOnConnectionFailure(true) //
+                .addInterceptor(new HeaderInterceptor())
+                .addInterceptor(logging);
         return builder.build();
     }
 
@@ -37,5 +46,12 @@ public class AppModule {
     @Provides
     public Context provideContext() {
         return context;
+    }
+
+    static class MyLog implements HttpLoggingInterceptor.Logger {
+        @Override
+        public void log(String message) {
+
+        }
     }
 }

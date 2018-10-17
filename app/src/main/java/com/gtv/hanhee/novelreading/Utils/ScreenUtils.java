@@ -17,7 +17,7 @@ public class ScreenUtils {
 
     public static EScreenDensity getDisply(Context context) {
         EScreenDensity eScreenDensity;
-        //初始化屏幕密度
+        //Khởi tạo độ phân giải màn hình
         DisplayMetrics dm = context.getApplicationContext().getResources().getDisplayMetrics();
         int densityDpi = dm.densityDpi;
 
@@ -34,7 +34,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 获取屏幕宽度
+     * Nhận chiều rộng của màn hình
      *
      * @return
      */
@@ -43,7 +43,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 获取屏幕高度
+     * Nhận chiều cao của màn hình
      *
      * @return
      */
@@ -52,7 +52,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 将dp转换成px
+     * Chuyển dp sang px
      *
      * @param dp
      * @return
@@ -66,7 +66,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 将px转换成dp
+     * Chuyển px sang dp
      *
      * @param px
      * @return
@@ -80,7 +80,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 将px值转换为sp值
+     * chuyển giá trị px sang giá trị sp
      *
      * @param pxValue
      * @return
@@ -90,7 +90,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 将sp值转换为px值
+     * chuyển sp sang px
      *
      * @param spValue
      * @return
@@ -109,7 +109,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 当前是否是横屏
+     * Màn hình có đang hiển thị theo chiều ngang hay ko
      *
      * @param context context
      * @return boolean
@@ -119,7 +119,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 当前是否是竖屏
+     * Màn hình có đang hiển thị theo chiều dọc hay ko
      *
      * @param context context
      * @return boolean
@@ -129,11 +129,11 @@ public class ScreenUtils {
     }
 
     /**
-     * 调整窗口的透明度  1.0f,0.5f 变暗
+     * Điều chỉnh độ trong suốt của Background 1.0f,0.5f là làm tối
      *
      * @param from    from>=0&&from<=1.0f
      * @param to      to>=0&&to<=1.0f
-     * @param context 当前的activity
+     * @param context activity hiện tại
      */
     public static void dimBackground(final float from, final float to, AppCompatActivity context) {
         final Window window = context.getWindow();
@@ -152,11 +152,11 @@ public class ScreenUtils {
     }
 
     /**
-     * 获得当前屏幕亮度的模式
+     * Nhận chế độ độ sáng của màn hình hiện tại
      *
      * @param mContext
-     * @return SCREEN_BRIGHTNESS_MODE_AUTOMATIC 自动调节屏幕亮度
-     * *       SCREEN_BRIGHTNESS_MODE_MANUAL 手动调节屏幕亮度
+     * @return SCREEN_BRIGHTNESS_MODE_AUTOMATIC : Tự động điều chỉnh độ sáng
+     * *       SCREEN_BRIGHTNESS_MODE_MANUAL : độ sáng thủ công
      */
     public static int getScreenMode(Context mContext) {
         int screenMode = 0;
@@ -169,7 +169,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 获得当前屏幕亮度值
+     * Nhận giá trị độ sáng màn hình hiện tại
      *
      * @param mContext
      * @return 0~100
@@ -185,10 +185,10 @@ public class ScreenUtils {
     }
 
     /**
-     * 设置当前屏幕亮度的模式
+     * Đặt chế độ độ sáng cho màn hình
      *
-     * @param paramInt SCREEN_BRIGHTNESS_MODE_AUTOMATIC 自动调节屏幕亮度
-     *                 SCREEN_BRIGHTNESS_MODE_MANUAL 手动调节屏幕亮度
+     * @param paramInt SCREEN_BRIGHTNESS_MODE_AUTOMATIC : auto
+     *                 SCREEN_BRIGHTNESS_MODE_MANUAL : thủ công
      * @param mContext
      */
     public static void setScreenMode(int paramInt, Context mContext) {
@@ -200,7 +200,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 设置当前屏幕亮度值
+     * Đặt giá trị độ sáng cho màn hinh hiện tại
      *
      * @param paramInt 0~100
      * @param mContext
@@ -218,7 +218,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 设置Activity的亮度
+     * Đặt độ sáng của Activity
      *
      * @param paramInt
      * @param mActivity
@@ -252,9 +252,9 @@ public class ScreenUtils {
     }
 
     public enum EScreenDensity {
-        XXHDPI,    //超高分辨率    1080×1920
-        XHDPI,    //超高分辨率    720×1280
-        HDPI,    //高分辨率         480×800
-        MDPI,    //中分辨率         320×480
+        XXHDPI,    //Phân giải cực cao      1080×1920
+        XHDPI,    //Phân giải siêu cao      720×1280
+        HDPI,    //Độ phân giải cao         480×800
+        MDPI,    //Độ phân giải trung bình  320×480
     }
 }

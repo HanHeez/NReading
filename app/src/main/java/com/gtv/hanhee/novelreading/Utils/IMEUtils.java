@@ -17,7 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 public class IMEUtils {
 
     /**
-     * 切换键盘显示/隐藏状态
+     * Chuyển đổi trạng thái hiển thị ẩn hiện bàn phím
      *
      * @param context
      */
@@ -27,7 +27,7 @@ public class IMEUtils {
     }
 
     /**
-     * 显示键盘
+     * Bàn phím hiển thị
      *
      * @param view
      * @return
@@ -48,7 +48,7 @@ public class IMEUtils {
     }
 
     /**
-     * 隐藏键盘
+     * Ẩn bản phím
      *
      * @param view
      * @return
@@ -67,7 +67,7 @@ public class IMEUtils {
     }
 
     /**
-     * 判断键盘是否打开
+     * Xác định xem bàn phím có đang mở hay ko
      *
      * @param context
      * @return

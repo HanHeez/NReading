@@ -15,17 +15,19 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class LogUtils {
-    private final static SimpleDateFormat LOG_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 日志的输出格式
-    private final static SimpleDateFormat FILE_SUFFIX = new SimpleDateFormat("yyyy-MM-dd");// 日志文件格式
-    private static Boolean LOG_SWITCH = true; // 日志文件总开关
-    private static Boolean LOG_TO_FILE = false; // 日志写入文件开关
-    private static String LOG_TAG = "TAG"; // 默认的tag
-    private static char LOG_TYPE = 'v';// 输入日志类型，v代表输出所有信息,w则只输出警告...
-    private static int LOG_SAVE_DAYS = 7;// sd卡中日志文件的最多保存天数
-    private static String LOG_FILE_PATH; // 日志文件保存路径
-    private static String LOG_FILE_NAME;// 日志文件保存名称
+    // Định dạng đầu ra Format của Log
+    private final static SimpleDateFormat LOG_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    // Định dang mở rộng của file theo Date
+    private final static SimpleDateFormat FILE_SUFFIX = new SimpleDateFormat("yyyy-MM-dd");
+    private static Boolean LOG_SWITCH = true; // Log chuyển đổi hay không
+    private static Boolean LOG_TO_FILE = false; // Log chuyển sang file hay ko
+    private static String LOG_TAG = "TAG"; // Tag LOG
+    private static char LOG_TYPE = 'v';// v là Log tất cả dữ liệu, w thì chỉ Log cảnh báo
+    private static int LOG_SAVE_DAYS = 7;// Số ngày tối đa lưu trữ trong thẻ SD
+    private static String LOG_FILE_PATH; // Đường dẫn lưu tệp Log
+    private static String LOG_FILE_NAME;// tên tệp Log
 
-    public static void init(Context context) { // 在Application中初始化
+    public static void init(Context context) { // Khởi tạo trong Application
         LOG_FILE_PATH = Environment.getExternalStorageDirectory().getPath() + File.separator + ReaderApplication.getsInstance().getPackageName();
         LOG_FILE_NAME = "Log";
     }
@@ -96,7 +98,7 @@ public class LogUtils {
     }
 
     /**
-     * 根据tag, msg和等级，输出日志
+     * Tag, thông điệp, cấp độ
      *
      * @param tag
      * @param msg
@@ -104,7 +106,7 @@ public class LogUtils {
      */
     private static void log(String tag, String msg, Throwable tr, char level) {
         if (LOG_SWITCH) {
-            if ('e' == level && ('e' == LOG_TYPE || 'v' == LOG_TYPE)) { // 输出错误信息
+            if ('e' == level && ('e' == LOG_TYPE || 'v' == LOG_TYPE)) { // Log đầu ra
                 Log.e(tag, msg, tr);
             } else if ('w' == level && ('w' == LOG_TYPE || 'v' == LOG_TYPE)) {
                 Log.w(tag, msg, tr);
@@ -121,14 +123,14 @@ public class LogUtils {
     }
 
     /**
-     * 打开日志文件并写入日志
+     * Mở tệp Log và ghi vào Log
      *
      * @return
      **/
     private synchronized static void log2File(String mylogtype, String tag, String text) {
         Date nowtime = new Date();
         String date = FILE_SUFFIX.format(nowtime);
-        String dateLogContent = LOG_FORMAT.format(nowtime) + ":" + mylogtype + ":" + tag + ":" + text; // 日志输出格式
+        String dateLogContent = LOG_FORMAT.format(nowtime) + ":" + mylogtype + ":" + tag + ":" + text; // Định đạng đầu ra Log
         File destDir = new File(LOG_FILE_PATH);
         if (!destDir.exists()) {
             destDir.mkdirs();
@@ -147,9 +149,9 @@ public class LogUtils {
     }
 
     /**
-     * 删除指定的日志文件
+     * Xóa file Log chỉ định
      */
-    public static void delFile() {// 删除日志文件
+    public static void delFile() {// Xóa tệp Log
         String needDelFiel = FILE_SUFFIX.format(getDateBefore());
         File file = new File(LOG_FILE_PATH, needDelFiel + LOG_FILE_NAME);
         if (file.exists()) {
@@ -158,7 +160,7 @@ public class LogUtils {
     }
 
     /**
-     * 得到LOG_SAVE_DAYS天前的日期
+     * Lấy ngày ghi nhớ Log
      *
      * @return
      */
