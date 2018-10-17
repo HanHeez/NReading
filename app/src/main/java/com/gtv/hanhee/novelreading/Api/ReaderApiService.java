@@ -12,12 +12,16 @@ import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.Model.RecommendBookList;
 import com.gtv.hanhee.novelreading.Model.SearchDetail;
 
+import java.util.List;
+
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
-public interface BookApiService {
+
+public interface ReaderApiService {
+
 
     @GET("/book/recommend")
     Observable<Recommend> getRecomend(@Query("gender") String gender);
@@ -54,4 +58,5 @@ public interface BookApiService {
 
     @GET("/book/by-tags")
     Observable<BooksByTag> getBooksByTag(@Query("tags") String tags, @Query("start") String start, @Query("limit") String limit);
+
 }

@@ -9,7 +9,8 @@ public interface RecommendContract {
         void showRecommendList(List<Recommend.RecommendBooks> list);
     }
 
-    interface Presenter {
+    interface Presenter<T> extends BaseContract.BasePresenter<T> {
 
+        void getRecommendList();
     }
 }

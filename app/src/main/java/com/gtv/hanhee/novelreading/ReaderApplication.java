@@ -2,8 +2,11 @@ package com.gtv.hanhee.novelreading;
 
 import android.app.Application;
 
+import com.gtv.hanhee.novelreading.Component.AppComponent;
+import com.gtv.hanhee.novelreading.Component.DaggerAppComponent;
 import com.gtv.hanhee.novelreading.Module.AppModule;
-import com.gtv.hanhee.novelreading.Module.BookApiModule;
+import com.gtv.hanhee.novelreading.Module.ReaderApiModule;
+import com.gtv.hanhee.novelreading.Utils.AppUtils;
 
 public class ReaderApplication extends Application {
     private static ReaderApplication sInstance;
@@ -18,11 +21,12 @@ public class ReaderApplication extends Application {
         super.onCreate();
         this.sInstance = this;
         initComponent();
+        AppUtils.init(this);
     }
 
     private void initComponent() {
         appComponent = DaggerAppComponent.builder()
-                .bookApiModule(new BookApiModule())
+                .readerApiModule(new ReaderApiModule())
                 .appModule(new AppModule(this))
                 .build();
     }

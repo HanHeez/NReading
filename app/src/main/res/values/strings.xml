@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">NovelReading</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_hot_search">Từ khóa hay tìm kiếm</string>
+    <string name="search_change_a_lot">Làm mới</string>
+
+    <string name="add_tag">Add Tag</string>
 </resources>

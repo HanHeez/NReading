@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gtv.hanhee.novelreading.AppComponent;
+import com.gtv.hanhee.novelreading.Component.AppComponent;
 import com.gtv.hanhee.novelreading.ReaderApplication;
 
 import butterknife.ButterKnife;
@@ -59,7 +60,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        this.activity = (FragmentActivity) activity;
+        this.activity = (AppCompatActivity) activity;
     }
 
     @Override
@@ -74,10 +75,8 @@ public abstract class BaseFragment extends Fragment {
         unbinder.unbind();
     }
 
-    protected abstract void setupActivityComponent(AppComponent appComponent);
-
-    public FragmentActivity getSupportActivity() {
-        return (FragmentActivity) super.getActivity();
+    public AppCompatActivity getSupportActivity() {
+        return (AppCompatActivity) super.getActivity();
     }
 
     public Context getApplicationContext() {
@@ -89,4 +88,5 @@ public abstract class BaseFragment extends Fragment {
         return parentView;
     }
 
+    protected abstract void setupActivityComponent(AppComponent appComponent);
 }

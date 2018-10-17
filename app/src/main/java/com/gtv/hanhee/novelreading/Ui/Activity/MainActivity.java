@@ -1,6 +1,6 @@
 package com.gtv.hanhee.novelreading.Ui.Activity;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -10,15 +10,14 @@ import android.view.MenuItem;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.gtv.hanhee.novelreading.AppComponent;
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
-import com.gtv.hanhee.novelreading.Fragment.RecommendFragment;
-import com.gtv.hanhee.novelreading.Module.MainActivityModule;
+import com.gtv.hanhee.novelreading.Component.AppComponent;
+import com.gtv.hanhee.novelreading.Component.DaggerMainActivityComponent;
 import com.gtv.hanhee.novelreading.R;
 import com.gtv.hanhee.novelreading.Ui.Adapter.RecommendTabLayoutAdapter;
-import com.gtv.hanhee.novelreading.Ui.Component.DaggerMainActivityComponent;
 import com.gtv.hanhee.novelreading.Ui.Contract.MainContract;
 import com.gtv.hanhee.novelreading.Ui.CustomView.TabEntity;
+import com.gtv.hanhee.novelreading.Ui.Fragment.RecommendFragment;
 import com.gtv.hanhee.novelreading.Ui.Presenter.MainActivityPresenter;
 
 import java.util.ArrayList;
@@ -28,9 +27,11 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
+//import com.gtv.hanhee.novelreading.Component.DaggerMainActivityComponent;
+
 public class MainActivity extends BaseActivity implements MainContract.View {
 
-    @BindView(R.id.toolbar)
+    @BindView(R.id.common_toolbar)
     Toolbar mToolbar;
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
@@ -49,12 +50,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     private int[] mIconSelectIds;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        mPresenter.getRecommend();
-    }
-
-    @Override
     public int getLayoutId() {
         return R.layout.activity_main;
     }
@@ -63,7 +58,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     protected void setupActivityComponent(AppComponent appComponent) {
         DaggerMainActivityComponent.builder()
                 .appComponent(appComponent)
-                .mainActivityModule(new MainActivityModule(this))
                 .build()
                 .inject(this);
     }
@@ -100,6 +94,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     public void configViews() {
         setSupportActionBar(mToolbar);
         tabLayout.setTabData(mTabEntities);
+        // set vị trí Viewpager khi click vào tabLayout
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
@@ -111,6 +106,23 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 if (position == 0) {
 
                 }
+            }
+        });
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                tabLayout.setCurrentTab(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
             }
         });
     }
@@ -125,6 +137,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.ab_search) {
+            startActivity(new Intent(MainActivity.this, SearchActivity.class));
             return true;
         }
 

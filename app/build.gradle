@@ -15,12 +15,19 @@ android {
         disable 'InvalidPackage'
     }
 
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
 }
 
@@ -36,23 +43,38 @@ dependencies {
 
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
-    // Net
+    // Retrofit 2
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.0.0-beta4'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
+
+    //OkHttp3
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.squareup.okio:okio:1.14.0'
+    // Rxjava 2
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
+
+
     // Image
     implementation 'com.github.bumptech.glide:glide:4.7.1'
-    // Dagger
+    // Dagger 2
     implementation 'com.google.dagger:dagger:2.17'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.17'
+    annotationProcessor 'javax.annotation:jsr250-api:1.0'
+
     //Butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    // Rx
-    implementation 'io.reactivex:rxandroid:1.2.1'
-    implementation 'io.reactivex:rxjava:1.3.6'
+
+    //taggroup
+    implementation 'me.gujun.android.taggroup:library:1.4@aar'
+
+
 
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 }

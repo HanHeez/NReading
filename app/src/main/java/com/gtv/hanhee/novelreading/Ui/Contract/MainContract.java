@@ -6,7 +6,8 @@ public interface MainContract {
 
     }
 
-    interface Presenter {
+    interface Presenter<T> extends BaseContract.BasePresenter<T> {
 
     }
+
 }

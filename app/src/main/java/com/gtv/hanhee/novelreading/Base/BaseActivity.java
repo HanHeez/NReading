@@ -1,27 +1,30 @@
 package com.gtv.hanhee.novelreading.Base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.gtv.hanhee.novelreading.AppComponent;
+import com.gtv.hanhee.novelreading.Component.AppComponent;
 import com.gtv.hanhee.novelreading.ReaderApplication;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity {
-
+    protected Context mContext;
     Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        mContext = this;
         unbinder = ButterKnife.bind(this);
         setupActivityComponent(ReaderApplication.getsInstance().getAppComponent());
         initToolBar();
         initDatas();
         configViews();
+
     }
 
     @Override
@@ -30,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         unbinder.unbind();
     }
 
-    protected abstract int getLayoutId();
+    public abstract int getLayoutId();
 
     protected abstract void setupActivityComponent(AppComponent appComponent);
 

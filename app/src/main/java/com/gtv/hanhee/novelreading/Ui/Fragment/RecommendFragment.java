@@ -1,16 +1,15 @@
-package com.gtv.hanhee.novelreading.Fragment;
+package com.gtv.hanhee.novelreading.Ui.Fragment;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.gtv.hanhee.novelreading.AppComponent;
 import com.gtv.hanhee.novelreading.Base.BaseFragment;
+import com.gtv.hanhee.novelreading.Component.AppComponent;
+import com.gtv.hanhee.novelreading.Component.DaggerRecommendFragmentComponent;
 import com.gtv.hanhee.novelreading.Model.Recommend;
-import com.gtv.hanhee.novelreading.Module.RecommendFragmentModule;
 import com.gtv.hanhee.novelreading.R;
 import com.gtv.hanhee.novelreading.Ui.Adapter.RecommendAdapter;
-import com.gtv.hanhee.novelreading.Ui.Component.DaggerRecommendFragmentComponent;
 import com.gtv.hanhee.novelreading.Ui.Contract.RecommendContract;
 import com.gtv.hanhee.novelreading.Ui.Presenter.RecommendPresenter;
 
@@ -69,10 +68,11 @@ public class RecommendFragment extends BaseFragment implements RecommendContract
     protected void setupActivityComponent(AppComponent appComponent) {
         DaggerRecommendFragmentComponent.builder()
                 .appComponent(appComponent)
-                .recommendFragmentModule(new RecommendFragmentModule(this))
+                //.recommendFragmentModule(new RecommendFragmentModule(this))
                 .build()
                 .inject(this);
     }
+
 
     @Override
     public void showRecommendList(List<Recommend.RecommendBooks> list) {

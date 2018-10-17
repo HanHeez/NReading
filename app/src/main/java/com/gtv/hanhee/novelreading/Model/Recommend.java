@@ -37,6 +37,92 @@ public class Recommend extends Base {
         public int chaptersCount;
         public String lastChapter;
 
+        public String get_id() {
+            return _id;
+        }
 
+        public void set_id(String _id) {
+            this._id = _id;
+        }
+
+        public String getAuthor() {
+            return author;
+        }
+
+        public void setAuthor(String author) {
+            this.author = author;
+        }
+
+        public String getCover() {
+            return cover;
+        }
+
+        public void setCover(String cover) {
+            this.cover = cover;
+        }
+
+        public String getShortIntro() {
+            return shortIntro;
+        }
+
+        public void setShortIntro(String shortIntro) {
+            this.shortIntro = shortIntro;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public boolean isHasCp() {
+            return hasCp;
+        }
+
+        public void setHasCp(boolean hasCp) {
+            this.hasCp = hasCp;
+        }
+
+        public int getLatelyFollower() {
+            return latelyFollower;
+        }
+
+        public void setLatelyFollower(int latelyFollower) {
+            this.latelyFollower = latelyFollower;
+        }
+
+        public double getRetentionRatio() {
+            return retentionRatio;
+        }
+
+        public void setRetentionRatio(double retentionRatio) {
+            this.retentionRatio = retentionRatio;
+        }
+
+        public String getUpdated() {
+            return updated;
+        }
+
+        public void setUpdated(String updated) {
+            this.updated = updated;
+        }
+
+        public int getChaptersCount() {
+            return chaptersCount;
+        }
+
+        public void setChaptersCount(int chaptersCount) {
+            this.chaptersCount = chaptersCount;
+        }
+
+        public String getLastChapter() {
+            return lastChapter;
+        }
+
+        public void setLastChapter(String lastChapter) {
+            this.lastChapter = lastChapter;
+        }
     }
 }
