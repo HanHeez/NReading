@@ -3,7 +3,6 @@ package com.gtv.hanhee.novelreading.Ui.Contract;
 import com.gtv.hanhee.novelreading.Model.HotWord;
 import com.gtv.hanhee.novelreading.Model.SearchDetail;
 
-import java.util.HashMap;
 import java.util.List;
 
 public interface SearchContract {

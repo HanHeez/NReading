@@ -16,48 +16,53 @@ import java.security.MessageDigest;
 
 public class GlideRoundTransform extends BitmapTransformation {
 
-	private static final String ID = "com.gtv.hanhee.novelreading.Utils.GlideRoundTransform";
-	private static final byte[] ID_BYTES = ID.getBytes(Charset.forName("UTF-8"));
+    private static final String ID = "com.gtv.hanhee.novelreading.Utils.GlideRoundTransform";
+    private static final byte[] ID_BYTES = ID.getBytes(Charset.forName("UTF-8"));
 
-	  private static float radius = 0f;
-	  public GlideRoundTransform(Context context) {
-	    this(context, 4);
-	  }
-	  @SuppressWarnings("static-access")
-	public GlideRoundTransform(Context context, int dp) {
-	    this.radius = Resources.getSystem().getDisplayMetrics().density * dp;
-	  }
+    private static float radius = 0f;
 
-	  @Override protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+    public GlideRoundTransform(Context context) {
+        this(context, 4);
+    }
 
-	    return roundCrop(pool, toTransform);
-	  }
-	  private static Bitmap roundCrop(BitmapPool pool, Bitmap source) {
-	    if (source == null) return null;
-	    Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
-	    if (result == null) {
-	      result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
-	    }
-	    Canvas canvas = new Canvas(result);
-	    Paint paint = new Paint();
-	    paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
-	    paint.setAntiAlias(true);
-	    RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());
-	    canvas.drawRoundRect(rectF, radius, radius, paint);
-	    return result;
-	  }
-	@Override
-	public boolean equals(Object o) {
-		return o instanceof GlideRoundTransform;
-	}
+    @SuppressWarnings("static-access")
+    public GlideRoundTransform(Context context, int dp) {
+        this.radius = Resources.getSystem().getDisplayMetrics().density * dp;
+    }
 
-	@Override
-	public int hashCode() {
-		return ID.hashCode();
-	}
+    private static Bitmap roundCrop(BitmapPool pool, Bitmap source) {
+        if (source == null) return null;
+        Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
+        if (result == null) {
+            result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
+        }
+        Canvas canvas = new Canvas(result);
+        Paint paint = new Paint();
+        paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
+        paint.setAntiAlias(true);
+        RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());
+        canvas.drawRoundRect(rectF, radius, radius, paint);
+        return result;
+    }
 
-	@Override
-	public void updateDiskCacheKey(MessageDigest messageDigest) {
-		messageDigest.update(ID_BYTES);
-	}
-	}
+    @Override
+    protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+
+        return roundCrop(pool, toTransform);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof GlideRoundTransform;
+    }
+
+    @Override
+    public int hashCode() {
+        return ID.hashCode();
+    }
+
+    @Override
+    public void updateDiskCacheKey(MessageDigest messageDigest) {
+        messageDigest.update(ID_BYTES);
+    }
+}

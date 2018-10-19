@@ -22,10 +22,10 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment {
 
     public Context mContext;
+    protected View parentView;
+    protected FragmentActivity activity;
+    protected LayoutInflater inflater;
     Unbinder unbinder;
-    private View parentView;
-    private FragmentActivity activity;
-    private LayoutInflater inflater;
 
     public abstract
     @LayoutRes

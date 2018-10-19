@@ -11,7 +11,6 @@ import okhttp3.Response;
 
 /**
  * Retrofit2 Cookie, được sử dụng và cài đặt để lưu Cookie
- *
  */
 public class HeaderInterceptor implements Interceptor {
 

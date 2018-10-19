@@ -14,8 +14,6 @@ import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 import android.util.DisplayMetrics;
 
-import com.gtv.hanhee.novelreading.Utils.LogUtils;
-
 public class DeviceUtils {
 
     private static final String TAG = DeviceUtils.class.getSimpleName();

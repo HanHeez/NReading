@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @BindView(R.id.tabLayout)
     CommonTabLayout tabLayout;
 
-    String[] mDatas = new String[]{"Danh sách", "Cộng đồng", "Phát hiện"};
+    String[] mDatas = new String[]{};
     List<Fragment> mTabContents;
     RecommendTabLayoutAdapter recommendTabLayoutAdapter;
 
@@ -64,12 +64,13 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     public void initToolBar() {
+        mToolbar.setLogo(R.drawable.home_ab_logo);
         setTitle("");
     }
 
     @Override
     public void initDatas() {
-
+        mDatas = getResources().getStringArray(R.array.home_tabs);
         mIconUnselectIds = new int[mDatas.length];
         mIconSelectIds = new int[mDatas.length];
         mTabContents = new ArrayList<>();

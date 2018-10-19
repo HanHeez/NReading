@@ -4,18 +4,17 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class TypeTextView extends android.support.v7.widget.AppCompatTextView {
+    private static final int TYPE_TIME_DELAY = 80;
     private Context mContext = null;
     private MediaPlayer mMediaPlayer = null;
     private String mShowTextString = null;
     private Timer mTypeTimer = null;
     private OnTypeViewListener mOnTypeViewListener = null;
-    private static final int TYPE_TIME_DELAY = 80;
     private int mTypeTimeDelay = TYPE_TIME_DELAY; // 打字间隔
 
     public TypeTextView(Context context, AttributeSet attrs, int defStyle) {
@@ -104,6 +103,12 @@ public class TypeTextView extends android.support.v7.widget.AppCompatTextView {
         }
     }
 
+    public interface OnTypeViewListener {
+        void onTypeStart();
+
+        void onTypeOver();
+    }
+
     class TypeTimerTask extends TimerTask {
         @Override
         public void run() {
@@ -123,11 +128,5 @@ public class TypeTextView extends android.support.v7.widget.AppCompatTextView {
                 }
             });
         }
-    }
-
-    public interface OnTypeViewListener {
-        void onTypeStart();
-
-        void onTypeOver();
     }
 }

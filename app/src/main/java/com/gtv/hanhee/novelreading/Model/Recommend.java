@@ -1,8 +1,6 @@
 package com.gtv.hanhee.novelreading.Model;
 
 import com.gtv.hanhee.novelreading.Model.Base.Base;
-import com.gtv.hanhee.novelreading.Utils.GlideCircleTransform;
-
 
 import java.io.Serializable;
 import java.util.List;

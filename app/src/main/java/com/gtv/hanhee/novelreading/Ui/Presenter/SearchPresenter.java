@@ -2,7 +2,6 @@ package com.gtv.hanhee.novelreading.Ui.Presenter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 
 import com.gtv.hanhee.novelreading.Api.ReaderApi;
 import com.gtv.hanhee.novelreading.Api.VietPhraseApi;
@@ -12,22 +11,19 @@ import com.gtv.hanhee.novelreading.Model.SearchDetail;
 import com.gtv.hanhee.novelreading.Ui.Contract.SearchContract;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class SearchPresenter implements SearchContract.Presenter<SearchContract.View> {
 
+    private static final String TAG = "SearchPresenter";
     List<String> hotWords = new ArrayList<>();
     List<SearchDetail.SearchBooks> listSearchDetail = new ArrayList<>();
-    List<HotWord.combineHotWord> combineHotWords= new ArrayList<>();
-    private static final String TAG = "SearchPresenter";
+    List<HotWord.combineHotWord> combineHotWords = new ArrayList<>();
     private Context context;
     private ReaderApi readerApi;
     private VietPhraseApi vietPhraseApi;
@@ -50,7 +46,8 @@ public class SearchPresenter implements SearchContract.Presenter<SearchContract.
 
         readerApi.getHotWord().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::resultHotWord,this::Error);;
+                .subscribe(this::resultHotWord, this::Error);
+        ;
     }
 
     private void resultHotWord(HotWord hotWord) {
@@ -70,10 +67,10 @@ public class SearchPresenter implements SearchContract.Presenter<SearchContract.
         }
     }
 
-    private void resultTransHotWord(String transText, String beforeText ) {
+    private void resultTransHotWord(String transText, String beforeText) {
         HotWord.combineHotWord combineHotWord = new HotWord.combineHotWord(transText, beforeText);
         combineHotWords.add(combineHotWord);
-        view.showHotWordList(combineHotWords,hotWords.size());
+        view.showHotWordList(combineHotWords, hotWords.size());
     }
 
 
@@ -82,7 +79,7 @@ public class SearchPresenter implements SearchContract.Presenter<SearchContract.
     public void getAutoCompleteList(String query) {
         readerApi.getAutoComplete(query).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::ResultAutoCompleteList,this::Error);
+                .subscribe(this::ResultAutoCompleteList, this::Error);
     }
 
     private void ResultAutoCompleteList(AutoComplete autoComplete) {
@@ -97,7 +94,7 @@ public class SearchPresenter implements SearchContract.Presenter<SearchContract.
     public void getSearchResultList(String query) {
         readerApi.getSearchResult(query).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::resultSearchResultList,this::Error);
+                .subscribe(this::resultSearchResultList, this::Error);
     }
 
     private void resultSearchResultList(SearchDetail searchDetail) {

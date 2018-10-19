@@ -3,6 +3,7 @@ package com.gtv.hanhee.novelreading.Api;
 import com.gtv.hanhee.novelreading.Model.AutoComplete;
 import com.gtv.hanhee.novelreading.Model.BookDetail;
 import com.gtv.hanhee.novelreading.Model.BookRead;
+import com.gtv.hanhee.novelreading.Model.BookMixAToc;
 import com.gtv.hanhee.novelreading.Model.BooksByTag;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
 import com.gtv.hanhee.novelreading.Model.HotReview;
@@ -11,8 +12,6 @@ import com.gtv.hanhee.novelreading.Model.PostCount;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.Model.RecommendBookList;
 import com.gtv.hanhee.novelreading.Model.SearchDetail;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -28,6 +27,9 @@ public interface ReaderApiService {
 
     @GET("/mix-toc/{bookId}")
     Observable<BookRead> getBookRead(@Path("bookId") String bookId);
+
+    @GET("/btoc/{bookId}")
+    Observable<BookMixAToc> getBookToc(@Path("bookId") String bookId, @Query("view") String view);
 
     @GET("http://chapter2.zhuishushenqi.com/chapter/{url}")
     Observable<ChapterRead> getChapterRead(@Path("url") String url);
@@ -58,5 +60,4 @@ public interface ReaderApiService {
 
     @GET("/book/by-tags")
     Observable<BooksByTag> getBooksByTag(@Query("tags") String tags, @Query("start") String start, @Query("limit") String limit);
-
 }

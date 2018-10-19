@@ -1,6 +1,7 @@
 package com.gtv.hanhee.novelreading.Api;
 
 import com.google.gson.Gson;
+import com.gtv.hanhee.novelreading.Base.Constant;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -17,7 +18,7 @@ public class VietPhraseApi {
 
     public VietPhraseApi(OkHttpClient okHttpClient, Gson gson) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(UrlApi.VietPhraseUrlApi)
+                .baseUrl(Constant.API_VIETPHRASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .client(okHttpClient)

@@ -51,6 +51,7 @@ public class AppModule {
     static class MyLog implements HttpLoggingInterceptor.Logger {
         @Override
         public void log(String message) {
+            LogUtils.i("oklog: " + message);
 
         }
     }

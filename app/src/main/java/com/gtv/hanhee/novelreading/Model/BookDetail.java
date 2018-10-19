@@ -88,15 +88,6 @@ public class BookDetail implements Serializable {
     public int wordCount;
     public String cat;
     public String catTrans;
-
-    public String getCatTrans() {
-        return catTrans;
-    }
-
-    public void setCatTrans(String catTrans) {
-        this.catTrans = catTrans;
-    }
-
     public String majorCate;
     public String majorCateTrans;
     public String minorCate;
@@ -111,56 +102,12 @@ public class BookDetail implements Serializable {
     public List<String> categories;
     public List<String> gender;
 
-    public static class combineCategories {
-        String category;
-        String categoryTrans;
-
-        public combineCategories(String category, String categoryTrans) {
-            this.category = category;
-            this.categoryTrans = categoryTrans;
-        }
-
-        public String getCategory() {
-            return category;
-        }
-
-        public void setCategory(String category) {
-            this.category = category;
-        }
-
-        public String getCategoryTrans() {
-            return categoryTrans;
-        }
-
-        public void setCategoryTrans(String categoryTrans) {
-            this.categoryTrans = categoryTrans;
-        }
+    public String getCatTrans() {
+        return catTrans;
     }
 
-    public static class combineTags {
-        String tag;
-        String tagTrans;
-
-        public combineTags(String tag, String tagTrans) {
-            this.tag = tag;
-            this.tagTrans = tagTrans;
-        }
-
-        public String getTag() {
-            return tag;
-        }
-
-        public void setTag(String tag) {
-            this.tag = tag;
-        }
-
-        public String getTagTrans() {
-            return tagTrans;
-        }
-
-        public void setTagTrans(String tagTrans) {
-            this.tagTrans = tagTrans;
-        }
+    public void setCatTrans(String catTrans) {
+        this.catTrans = catTrans;
     }
 
     public String get_id() {
@@ -515,7 +462,6 @@ public class BookDetail implements Serializable {
         this.tags = tags;
     }
 
-
     public List<String> getTocs() {
         return tocs;
     }
@@ -532,13 +478,63 @@ public class BookDetail implements Serializable {
         this.categories = categories;
     }
 
-
-
     public List<String> getGender() {
         return gender;
     }
 
     public void setGender(List<String> gender) {
         this.gender = gender;
+    }
+
+    public static class combineCategories {
+        String category;
+        String categoryTrans;
+
+        public combineCategories(String category, String categoryTrans) {
+            this.category = category;
+            this.categoryTrans = categoryTrans;
+        }
+
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
+        }
+
+        public String getCategoryTrans() {
+            return categoryTrans;
+        }
+
+        public void setCategoryTrans(String categoryTrans) {
+            this.categoryTrans = categoryTrans;
+        }
+    }
+
+    public static class combineTags {
+        String tag;
+        String tagTrans;
+
+        public combineTags(String tag, String tagTrans) {
+            this.tag = tag;
+            this.tagTrans = tagTrans;
+        }
+
+        public String getTag() {
+            return tag;
+        }
+
+        public void setTag(String tag) {
+            this.tag = tag;
+        }
+
+        public String getTagTrans() {
+            return tagTrans;
+        }
+
+        public void setTagTrans(String tagTrans) {
+            this.tagTrans = tagTrans;
+        }
     }
 }
