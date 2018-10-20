@@ -3,6 +3,8 @@ package com.gtv.hanhee.novelreading.Model;
 
 import com.gtv.hanhee.novelreading.Model.Base.Base;
 
+import java.io.Serializable;
+
 
 public class ChapterRead extends Base {
 
@@ -74,7 +76,7 @@ public class ChapterRead extends Base {
 
     public Chapter chapter;
 
-    public static class Chapter {
+    public static class Chapter implements Serializable {
         public String title;
         public String titleTrans;
         public String body;

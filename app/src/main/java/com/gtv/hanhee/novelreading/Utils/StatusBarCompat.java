@@ -8,6 +8,8 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gtv.hanhee.novelreading.R;
+
 public class StatusBarCompat {
     private static final int INVALID_VAL = -1;
     private static final int COLOR_DEFAULT = Color.parseColor("#3F51B5");
@@ -23,7 +25,7 @@ public class StatusBarCompat {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            int color = COLOR_DEFAULT;
+            int color = activity.getResources().getColor(R.color.colorPrimaryDark);
             ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
             if (statusColor != INVALID_VAL) {
                 color = statusColor;

@@ -5,7 +5,7 @@ import com.gtv.hanhee.novelreading.Model.Base.Base;
 import java.io.Serializable;
 import java.util.List;
 
-public class BookMixAToc extends Base {
+public class BookToc extends Base {
 
     /**
      * _id:577e528e2160421a02d7380d

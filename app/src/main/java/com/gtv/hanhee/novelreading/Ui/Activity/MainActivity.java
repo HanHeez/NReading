@@ -2,6 +2,7 @@ package com.gtv.hanhee.novelreading.Ui.Activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,9 +15,11 @@ import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
 import com.gtv.hanhee.novelreading.Component.DaggerMainActivityComponent;
 import com.gtv.hanhee.novelreading.R;
+import com.gtv.hanhee.novelreading.Service.DownloadBookService;
 import com.gtv.hanhee.novelreading.Ui.Adapter.RecommendTabLayoutAdapter;
 import com.gtv.hanhee.novelreading.Ui.Contract.MainContract;
 import com.gtv.hanhee.novelreading.Ui.CustomView.TabEntity;
+import com.gtv.hanhee.novelreading.Ui.Fragment.FindFragment;
 import com.gtv.hanhee.novelreading.Ui.Fragment.RecommendFragment;
 import com.gtv.hanhee.novelreading.Ui.Presenter.MainActivityPresenter;
 
@@ -39,7 +42,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     CommonTabLayout tabLayout;
 
     String[] mDatas = new String[]{};
+    private FragmentPagerAdapter mAdapter;
     List<Fragment> mTabContents;
+
     RecommendTabLayoutAdapter recommendTabLayoutAdapter;
 
 
@@ -60,6 +65,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 .appComponent(appComponent)
                 .build()
                 .inject(this);
+        startService(new Intent(this, DownloadBookService.class));
     }
 
     @Override
@@ -86,9 +92,22 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         for (int i = 0; i < mDatas.length; i++) {
 //              RecommendFragment fragment = RecommendFragment.newInstance(data);
             RecommendFragment fragment = new RecommendFragment();
-            mTabContents.add(fragment);
-            recommendTabLayoutAdapter.notifyDataSetChanged();
+            mTabContents.add(new RecommendFragment());
+            mTabContents.add(new RecommendFragment());
+            mTabContents.add(new FindFragment());
         }
+
+        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public int getCount() {
+                return mTabContents.size();
+            }
+
+            @Override
+            public Fragment getItem(int position) {
+                return mTabContents.get(position);
+            }
+        };
     }
 
 
@@ -143,6 +162,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(this, DownloadBookService.class));
     }
 
 }

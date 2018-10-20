@@ -1,66 +1,28 @@
 package com.gtv.hanhee.novelreading.Ui.Activity;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.database.ContentObserver;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatDelegate;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.FrameLayout;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
-import com.gtv.hanhee.novelreading.Base.Constant;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
 import com.gtv.hanhee.novelreading.Component.DaggerBookReadActivityComponent;
-import com.gtv.hanhee.novelreading.Model.BookMixAToc;
+import com.gtv.hanhee.novelreading.Model.BookSource;
+import com.gtv.hanhee.novelreading.Model.BookToc;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.R;
-import com.gtv.hanhee.novelreading.ReaderApplication;
-import com.gtv.hanhee.novelreading.Ui.Activity.BookDetailActivity;
-import com.gtv.hanhee.novelreading.Ui.Adapter.TocListAdapter;
 import com.gtv.hanhee.novelreading.Ui.Contract.BookReadContract;
 import com.gtv.hanhee.novelreading.Ui.Presenter.BookReadPresenter;
-import com.gtv.hanhee.novelreading.Utils.AppUtils;
-import com.gtv.hanhee.novelreading.Utils.FileUtils;
-import com.gtv.hanhee.novelreading.Utils.LogUtils;
-import com.gtv.hanhee.novelreading.Utils.ScreenUtils;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.OnClick;
-import io.reactivex.Observable;
 
 /**
  * Created by lfh on 2016/9/18.
@@ -134,7 +96,7 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
     @Inject
     BookReadPresenter mPresenter;
 
-    private List<BookMixAToc.mixToc.Chapters> mChapterList = new ArrayList<>();
+    private List<BookToc.mixToc.Chapters> mChapterList = new ArrayList<>();
 //    private ListPopupWindow mTocListPopupWindow;
 //    private TocListAdapter mTocListAdapter;
 //
@@ -277,7 +239,7 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
 //        mPresenter.attachView(this);
 //        // 本地收藏  直接打开
 //        if (isFromSD) {
-//            BookMixAToc.mixToc.Chapters chapters = new BookMixAToc.mixToc.Chapters();
+//            BookToc.mixToc.Chapters chapters = new BookToc.mixToc.Chapters();
 //            chapters.title = recommendBooks.title;
 //            mChapterList.add(chapters);
 //            showChapterRead(null, currentChapter);
@@ -294,7 +256,12 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
     }
 
     @Override
-    public void showBookToc(List<BookMixAToc.mixToc.Chapters> list) {
+    public void showBookToc(List<BookToc.mixToc.Chapters> list) {
+
+    }
+
+    @Override
+    public void showBookSource(List<BookSource> list) {
 
     }
 
@@ -414,7 +381,7 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
 //     * @param list
 //     */
 //    @Override
-//    public void showBookToc(List<BookMixAToc.mixToc.Chapters> list) {
+//    public void showBookToc(List<BookToc.mixToc.Chapters> list) {
 //        mChapterList.clear();
 //        mChapterList.addAll(list);
 //

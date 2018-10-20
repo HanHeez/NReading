@@ -4,11 +4,13 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.WindowManager;
 
 import com.gtv.hanhee.novelreading.Component.AppComponent;
 import com.gtv.hanhee.novelreading.ReaderApplication;
 import com.gtv.hanhee.novelreading.Ui.CustomView.CustomDialog;
+import com.gtv.hanhee.novelreading.Utils.SharedPreferencesUtil;
 import com.gtv.hanhee.novelreading.Utils.StatusBarCompat;
 
 import butterknife.ButterKnife;
@@ -19,6 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected int statusBarColor = 0;
     Unbinder unbinder;
     private CustomDialog dialog;
+    private boolean mNowMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         initDatas();
         configViews();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (SharedPreferencesUtil.getInstance().getBoolean(Constant.ISNIGHT, false) != mNowMode) {
+            if (SharedPreferencesUtil.getInstance().getBoolean(Constant.ISNIGHT, false)) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+            recreate();
+        }
     }
 
     @Override
