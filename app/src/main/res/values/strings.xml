@@ -1,54 +1,98 @@
 <resources>
-    <string name="app_name">NovelReading</string>
+   <string name="app_name">NovelReading</string>
 
-    <string name="search_hot_search">Từ khóa hay tìm kiếm</string>
-    <string name="search_change_a_lot">Làm mới</string>
+   <string name="search_hot_search">Từ khóa hay tìm kiếm</string>
+   <string name="search_change_a_lot">Làm mới</string>
 
-    <string name="add_tag">Add Tag</string>
-    <string name="book_detail">Chi tiết</string>
+   <string name="add_tag">Add Tag</string>
+   <string name="book_detail">Chi tiết</string>
 
-    <string name="search_result_lately_follower">"%1$d người theo dõi |&#160;"</string>
-    <string name="search_result_retention_ratio">"%1$s giữ chân người đọc |&#160;"</string>
-    <string name="search_result_author">Tác giả: %1$s</string>
+   <string name="search_result_lately_follower">"%1$d người theo dõi |&#160;"</string>
+   <string name="search_result_retention_ratio">"%1$s giữ chân người đọc |&#160;"</string>
+   <string name="search_result_author">Tác giả: %1$s</string>
 
-    <string name="book_detail_author">%1$s |&#160;</string>
-    <string name="book_detail_category">%1$s |&#160;</string>
-    <string name="book_detail_user_lv">&#160;lv.%1$d</string>
-    <string name="book_detail_hot_reviews">Đánh giá phổ biển</string>
-    <string name="book_detail_community">%1$s cộng đồng</string>
-    <string name="book_detail_post_count">Có %1$d bài đăng</string>
-    <string name="book_detail_recommend_book_list">Đề xuất</string>
-    <string name="book_detail_recommend_book_list_book_count">Có %1$d truyện |&#160;</string>
-    <string name="book_detail_recommend_book_list_collector_count">%1$d bộ sưu tập</string>
-    <string name="book_read_reading">Phóng to</string>
-    <string name="book_read_community">Cộng đồng</string>
-    <string name="book_read_mode">Chế độ đọc</string>
-    <string name="book_read_feedback">Phản hồi</string>
-    <string name="book_read_settings">Cài đặt</string>
-    <string name="book_read_download">Tải về</string>
-    <string name="book_read_toc">DS Chương</string>
-    <string name="more_review">Xem thêm</string>
-    <string name="tvSerialize_Word_Count">Số từ cập nhật hàng ngày</string>
-    <string name="tvRetention_Ratio">tỉ lệ người đọc</string>
+   <string name="book_detail_author">%1$s |&#160;</string>
+   <string name="book_detail_category">%1$s |&#160;</string>
+   <string name="book_detail_user_lv">&#160;lv.%1$d</string>
+   <string name="book_detail_hot_reviews">Đánh giá phổ biển</string>
+   <string name="book_detail_community">%1$s cộng đồng</string>
+   <string name="book_detail_post_count">Có %1$d bài đăng</string>
+   <string name="book_detail_recommend_book_list">Đề xuất</string>
+   <string name="book_detail_recommend_book_list_book_count">Có %1$d truyện |&#160;</string>
+   <string name="book_detail_recommend_book_list_collector_count">%1$d bộ sưu tập</string>
+   <string name="book_read_reading">Phóng to</string>
+   <string name="book_read_community">Cộng đồng</string>
+   <string name="book_read_mode">Chế độ đọc</string>
+   <string name="book_read_feedback">Phản hồi</string>
+   <string name="book_read_settings">Cài đặt</string>
+   <string name="book_read_download">Tải về</string>
+   <string name="book_read_toc">DS Chương</string>
+   <string name="more_review">Xem thêm</string>
+   <string name="tvSerialize_Word_Count">Số từ cập nhật hàng ngày</string>
+   <string name="tvRetention_Ratio">tỉ lệ người đọc</string>
 
-    <!--Đoc trang liên quan -->
-    <string name = "book_read_change_source">Nguồn</string>
-    <string name = "book_read_introduce">Chi tiết</string>
-    <string name = "book_read_mode_day">Đêm</string>
-    <string name = "book_read_mode_day_manual_setting">Ngày</string>
-    <string name = "book_read_mode_night_manual_setting">Đêm</string>
-    <string name = "add_bookmark">Thêm dấu trang</string>
-    <string name = "manage_bookmark">Quản lý</string>
-    <string name = "clear_bookmark">Xóa</string>
-    <string name = "book_read_download_error">Lỗi mạng, hủy tải về</string>
-    <string name = "book_read_download_complete">Đã hoàn tất bộ nhớ cache, không thành công% 1 $ d chương</string>
-    <string name = "book_read_alreday_download">đã được lưu trong bộ nhớ cache: %1$s(%2$d/%3$d)...</string>
-    <string name = "book_read_download_progress">đang lưu vào bộ nhớ cache: %1$s(%2$d/%3$d)...</string>
-    <string name = "net_error">lỗi mạng</string>
-    <string name = "book_read_add_book">đọc sách thêm vào</string>
-    <string name = "book_read_would_you_like_to_add_this_to_the_book_shelf">Bạn có muốn thêm sách này vào giá sách không?</string>
-    <string name = "book_read_join_the_book_shelf">thêm vào giá sách</string>
-    <string name = "book_read_not">không</string>
-    <string name = "book_read_mark">Đánh dấu</string>
+   <!--Đoc trang liên quan -->
+   <string name="book_read_change_source">Nguồn</string>
+        
+   <string name="book_read_introduce">Chi tiết</string>
+        
+   <string name="book_read_mode_day">Đêm</string>
+        
+   <string name="book_read_mode_day_manual_setting">Ngày</string>
+        
+   <string name="book_read_mode_night_manual_setting">Đêm</string>
+        
+   <string name="add_bookmark">Thêm dấu trang</string>
+        
+   <string name="manage_bookmark">Quản lý</string>
+        
+   <string name="clear_bookmark">Xóa</string>
+        
+   <string name="book_read_download_error">Lỗi mạng, hủy tải về</string>
+        
+   <string name="book_read_download_complete">Đã hoàn tất bộ nhớ cache, không thành công %1$d chương</string>
+        
+   <string name="book_read_alreday_download">đã được lưu trong bộ nhớ cache: %1$s(%2$d/%3$d)...</string>
+        
+   <string name="book_read_download_progress">đang lưu vào bộ nhớ cache: %1$s(%2$d/%3$d)...</string>
+        
+   <string name="net_error">lỗi mạng</string>
+        
+   <string name="book_read_add_book">đọc sách thêm vào</string>
+        
+   <string name="book_read_would_you_like_to_add_this_to_the_book_shelf">Bạn có muốn thêm sách này vào giá sách không?</string>
+        
+   <string name="book_read_join_the_book_shelf">thêm vào giá sách</string>
+        
+   <string name="book_read_not">không</string>
+   <string name="book_read_mark">Đánh dấu</string>
+
+   <!-- TODO: Remove or change this placeholder text -->
+   <string name="hello_blank_fragment">Hello blank fragment</string>
+
+   <!-- Trang chủ menu -->
+   <string name="menu_main_please_login">Vui lòng đăng nhập</string>
+   <string name="menu_main_my_message">Tin tức</string>
+   <string name="menu_main_sync_bookshelf">Đồng bộ giá sách</string>
+   <string name="menu_main_wifi_book">Tiểu sử Wifi</string>
+   <string name="menu_main_feedback">Phản hồi</string>
+   <string name="menu_main_night_mode">Chế độ đêm</string>
+   <string name="menu_main_settings">Cài đặt</string>
+   <string name="menu_main_scan_local_book">Scan sách</string>
+
+
+   <!-- Trang chủ Sách -->
+        <string name="exit_tips"> Nhấn lại để thoát chương trình</string>
+        <string name="remove_selected_book"> Xóa sách đã chọn</string>
+        <string name="delete_local_cache"> Xóa bộ nhớ cache cục bộ</string>
+        <string name="confirm"> Đồng ý</string>
+        <string name="cancel"> Hủy</string>
+        <string name="cancel_selected_all"> Hủy tất cả lựa chọn</string>
+        <string name="selected_all"> Chọn tất cả</string>
+        <string name="has_not_selected_delete_book"> Bạn chưa chọn sách để xóa</string>
+        <string name="add_the_book_you_like"> Thêm tiểu thuyết yêu thích của bạn</string>
+        <string name="network_error_tips"> Tải không thành công, vui lòng kiểm tra mạng hoặc thử lại sau</string>
+        <string name="cancle_top"> Bỏ ghim</string>
+        <string name="to_add"> Thêm</string>
 
 </resources>

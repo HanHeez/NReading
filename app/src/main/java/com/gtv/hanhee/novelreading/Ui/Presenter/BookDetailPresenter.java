@@ -3,7 +3,7 @@ package com.gtv.hanhee.novelreading.Ui.Presenter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import com.gtv.hanhee.novelreading.Api.ReaderApi;
+import com.gtv.hanhee.novelreading.Api.BookApi;
 import com.gtv.hanhee.novelreading.Api.VietPhraseApi;
 import com.gtv.hanhee.novelreading.Model.BookDetail;
 import com.gtv.hanhee.novelreading.Model.HotReview;
@@ -25,7 +25,7 @@ public class BookDetailPresenter implements BookDetailContract.Presenter<BookDet
 
     private static final String TAG = "BookDetailPresenter";
     private Context context;
-    private ReaderApi readerApi;
+    private BookApi bookApi;
     private VietPhraseApi vietPhraseApi;
     private BookDetail bookDetail;
     ;
@@ -35,9 +35,9 @@ public class BookDetailPresenter implements BookDetailContract.Presenter<BookDet
     private BookDetailContract.View view;
 
     @Inject
-    public BookDetailPresenter(Context context, ReaderApi readerApi, VietPhraseApi vietPhraseApi) {
+    public BookDetailPresenter(Context context, BookApi bookApi, VietPhraseApi vietPhraseApi) {
         this.context = context;
-        this.readerApi = readerApi;
+        this.bookApi = bookApi;
         this.vietPhraseApi = vietPhraseApi;
     }
 
@@ -46,9 +46,14 @@ public class BookDetailPresenter implements BookDetailContract.Presenter<BookDet
         this.view = view;
     }
 
+    @Override
+    public void detachView() {
+
+    }
+
     @SuppressLint("CheckResult")
     public void getBookDetail(String bookId) {
-        readerApi.getBookDetail(bookId).subscribeOn(Schedulers.io())
+        bookApi.getBookDetail(bookId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::ResultBookDetail, this::Error);
     }
@@ -147,7 +152,7 @@ public class BookDetailPresenter implements BookDetailContract.Presenter<BookDet
 
     @Override
     public void getHotReview(String book) {
-        readerApi.getHotReview(book).subscribeOn(Schedulers.io())
+        bookApi.getHotReview(book).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotReview>() {
                     @Override
@@ -177,7 +182,7 @@ public class BookDetailPresenter implements BookDetailContract.Presenter<BookDet
 
     @Override
     public void getRecommendBookList(String bookId, String limit) {
-        readerApi.getRecommendBookList(bookId, limit).subscribeOn(Schedulers.io())
+        bookApi.getRecommendBookList(bookId, limit).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<RecommendBookList>() {
                     @Override

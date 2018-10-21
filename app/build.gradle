@@ -41,7 +41,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //
-    implementation 'org.apache.commons:commons-collections4:4.2'
     //EasyAdapter
     implementation 'com.yuyh.easyadapter:library:1.2.0'
     //EasyRecycleView
@@ -73,6 +72,8 @@ dependencies {
     //Butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //Annotation
+    annotationProcessor 'org.glassfish:javax.annotation:10.0-b28'
     //    //taggroup
     //    implementation 'me.gujun.android.taggroup:library:1.4@aar'
     //tab Layout

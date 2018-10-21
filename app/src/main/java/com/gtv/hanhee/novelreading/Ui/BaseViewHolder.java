@@ -1,4 +1,4 @@
-package com.gtv.hanhee.novelreading.Ui.RecycleView.Adapter;
+package com.gtv.hanhee.novelreading.Ui;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

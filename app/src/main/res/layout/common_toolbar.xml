@@ -7,10 +7,30 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/common_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:logo="@drawable/home_ab_logo"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Tittle here"-->
+                <!--android:textColor="#ffff"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:textSize="23sp"-->
+                <!--android:layout_alignParentLeft="true"/>-->
+            <ImageView
+                android:layout_width="?attr/actionBarSize"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/logo"/>
+
+        </RelativeLayout>
+</android.support.v7.widget.Toolbar>
 </merge>

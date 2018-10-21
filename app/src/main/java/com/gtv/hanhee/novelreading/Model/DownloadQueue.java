@@ -8,7 +8,7 @@ public class DownloadQueue implements Serializable {
 
     public String bookId;
 
-    public List<BookToc.mixToc.Chapters> list;
+    public List<BookMixAToc.mixToc.Chapters> list;
 
     public int start;
 
@@ -29,7 +29,7 @@ public class DownloadQueue implements Serializable {
      */
     public boolean isFinish = false;
 
-    public DownloadQueue(String bookId, List<BookToc.mixToc.Chapters> list, int start, int end) {
+    public DownloadQueue(String bookId, List<BookMixAToc.mixToc.Chapters> list, int start, int end) {
         this.bookId = bookId;
         this.list = list;
         this.start = start;

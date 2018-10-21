@@ -79,4 +79,9 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="LoginPopup">
+        <item name="android:windowEnterAnimation">@anim/login_show</item>
+        <item name="android:windowExitAnimation">@anim/login_dismiss</item>
+    </style>
+
 </resources>

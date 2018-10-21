@@ -5,10 +5,13 @@ public class DownloadProgress {
 
     public String bookId;
 
-    public int progress;
+    public String message;
 
-    public DownloadProgress(String bookId, int progress) {
+    public boolean isAlreadyDownload = false;
+
+    public DownloadProgress(String bookId, String message, boolean isAlreadyDownload) {
         this.bookId = bookId;
-        this.progress = progress;
+        this.message = message;
+        this.isAlreadyDownload = isAlreadyDownload;
     }
 }

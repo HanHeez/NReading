@@ -8,12 +8,11 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-        <!--tools:ignore="ProtectedPermissions" />-->
 
+    <!-- tools:ignore="ProtectedPermissions" /> -->
     <application
         android:name=".ReaderApplication"
         android:allowBackup="true"
@@ -28,13 +27,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Ui.Activity.SearchActivity"></activity>
-        <activity android:name=".Ui.Activity.BookDetailActivity"></activity>
-        <activity android:name=".Ui.Activity.BooksByTagActivity"></activity>
-        <activity android:name=".Ui.Activity.BookReadActivity"></activity>
-        <service android:name=".Service.DownloadBookService"/>
+        <activity android:name=".Ui.Activity.SearchActivity" />
+        <activity android:name=".Ui.Activity.BookDetailActivity" />
+        <activity android:name=".Ui.Activity.BooksByTagActivity" />
+        <activity android:name=".Ui.Activity.BookReadActivity" />
+
+        <service android:name=".Service.DownloadBookService" />
+
+        <activity
+            android:name=".Ui.Activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Ui.Activity.ScanLocalBookActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Ui.Activity.WifiBookActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Ui.Activity.FeedbackActivity"
+            android:screenOrientation="portrait" />
     </application>
-
-
 
 </manifest>

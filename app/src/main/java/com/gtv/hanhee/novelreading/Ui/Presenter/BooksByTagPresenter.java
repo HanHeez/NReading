@@ -2,7 +2,7 @@ package com.gtv.hanhee.novelreading.Ui.Presenter;
 
 import android.content.Context;
 
-import com.gtv.hanhee.novelreading.Api.ReaderApi;
+import com.gtv.hanhee.novelreading.Api.BookApi;
 import com.gtv.hanhee.novelreading.Api.VietPhraseApi;
 import com.gtv.hanhee.novelreading.Model.BooksByTag;
 import com.gtv.hanhee.novelreading.Ui.Contract.BooksByTagContract;
@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 public class BooksByTagPresenter implements BooksByTagContract.Presenter<BooksByTagContract.View> {
 
     private Context context;
-    private ReaderApi readerApi;
+    private BookApi bookApi;
     private VietPhraseApi vietPhraseApi;
 
     private BooksByTagContract.View view;
@@ -28,9 +28,9 @@ public class BooksByTagPresenter implements BooksByTagContract.Presenter<BooksBy
     private boolean isLoading = false;
 
     @Inject
-    public BooksByTagPresenter(Context context, ReaderApi readerApi, VietPhraseApi vietPhraseApi) {
+    public BooksByTagPresenter(Context context, BookApi bookApi, VietPhraseApi vietPhraseApi) {
         this.context = context;
-        this.readerApi = readerApi;
+        this.bookApi = bookApi;
         this.vietPhraseApi = vietPhraseApi;
     }
 
@@ -40,10 +40,15 @@ public class BooksByTagPresenter implements BooksByTagContract.Presenter<BooksBy
     }
 
     @Override
+    public void detachView() {
+
+    }
+
+    @Override
     public void getBooksByTag(String tags, final String start, String limit) {
         if (!isLoading) {
             isLoading = true;
-            readerApi.getBooksByTag(tags, start, limit).subscribeOn(Schedulers.io())
+            bookApi.getBooksByTag(tags, start, limit).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<BooksByTag>() {
                         @Override

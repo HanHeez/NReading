@@ -26,7 +26,7 @@ import static javax.microedition.khronos.opengles.GL10.GL_TRIANGLES;
 import static javax.microedition.khronos.opengles.GL10.GL_UNSIGNED_SHORT;
 import static javax.microedition.khronos.opengles.GL10.GL_VERTEX_ARRAY;
 
-public class    Card {
+public class Card {
 
     public static final int AXIS_TOP = 0;
     public static final int AXIS_BOTTOM = 1;

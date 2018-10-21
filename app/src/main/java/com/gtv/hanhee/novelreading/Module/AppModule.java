@@ -52,7 +52,6 @@ public class AppModule {
         @Override
         public void log(String message) {
             LogUtils.i("oklog: " + message);
-
         }
     }
 }

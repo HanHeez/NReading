@@ -3,7 +3,7 @@ package com.gtv.hanhee.novelreading.Ui.Presenter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import com.gtv.hanhee.novelreading.Api.ReaderApi;
+import com.gtv.hanhee.novelreading.Api.BookApi;
 import com.gtv.hanhee.novelreading.Api.VietPhraseApi;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.Ui.Contract.RecommendContract;
@@ -21,14 +21,14 @@ public class RecommendPresenter implements RecommendContract.Presenter<Recommend
 
     List<Recommend.RecommendBooks> list = new ArrayList<>();
     private Context context;
-    private ReaderApi readerApi;
+    private BookApi bookApi;
     private VietPhraseApi vietPhraseApi;
     private RecommendContract.View view;
 
     @Inject
-    public RecommendPresenter(Context context, ReaderApi readerApi, VietPhraseApi vietPhraseApi) {
+    public RecommendPresenter(Context context, BookApi bookApi, VietPhraseApi vietPhraseApi) {
         this.context = context;
-        this.readerApi = readerApi;
+        this.bookApi = bookApi;
         this.vietPhraseApi = vietPhraseApi;
     }
 
@@ -37,10 +37,15 @@ public class RecommendPresenter implements RecommendContract.Presenter<Recommend
         this.view = view;
     }
 
+    @Override
+    public void detachView() {
+
+    }
+
     @SuppressLint("CheckResult")
     @Override
     public void getRecommendList() {
-        readerApi.getRecommend("male").observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
+        bookApi.getRecommend("male").observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
                 .subscribe(this::ResultList, this::ErrorList);
     }
 

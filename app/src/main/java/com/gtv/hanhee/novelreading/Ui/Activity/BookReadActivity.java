@@ -9,8 +9,8 @@ import android.widget.RelativeLayout;
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
 import com.gtv.hanhee.novelreading.Component.DaggerBookReadActivityComponent;
+import com.gtv.hanhee.novelreading.Model.BookMixAToc;
 import com.gtv.hanhee.novelreading.Model.BookSource;
-import com.gtv.hanhee.novelreading.Model.BookToc;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.R;
@@ -96,7 +96,7 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
     @Inject
     BookReadPresenter mPresenter;
 
-    private List<BookToc.mixToc.Chapters> mChapterList = new ArrayList<>();
+    private List<BookMixAToc.mixToc.Chapters> mChapterList = new ArrayList<>();
 //    private ListPopupWindow mTocListPopupWindow;
 //    private TocListAdapter mTocListAdapter;
 //
@@ -239,7 +239,7 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
 //        mPresenter.attachView(this);
 //        // 本地收藏  直接打开
 //        if (isFromSD) {
-//            BookToc.mixToc.Chapters chapters = new BookToc.mixToc.Chapters();
+//            BookMixAToc.mixToc.Chapters chapters = new BookMixAToc.mixToc.Chapters();
 //            chapters.title = recommendBooks.title;
 //            mChapterList.add(chapters);
 //            showChapterRead(null, currentChapter);
@@ -256,12 +256,23 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
     }
 
     @Override
-    public void showBookToc(List<BookToc.mixToc.Chapters> list) {
+    public void netError(int chapter) {
 
     }
 
     @Override
-    public void showBookSource(List<BookSource> list) {
+    public void showBookToc(List<BookMixAToc.mixToc.Chapters> list) {
+
+    }
+
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void complete() {
 
     }
 
@@ -381,7 +392,7 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
 //     * @param list
 //     */
 //    @Override
-//    public void showBookToc(List<BookToc.mixToc.Chapters> list) {
+//    public void showBookToc(List<BookMixAToc.mixToc.Chapters> list) {
 //        mChapterList.clear();
 //        mChapterList.addAll(list);
 //

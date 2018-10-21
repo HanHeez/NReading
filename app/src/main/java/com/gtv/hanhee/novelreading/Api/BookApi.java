@@ -5,8 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.gtv.hanhee.novelreading.Base.Constant;
 import com.gtv.hanhee.novelreading.Model.AutoComplete;
 import com.gtv.hanhee.novelreading.Model.BookDetail;
+import com.gtv.hanhee.novelreading.Model.BookMixAToc;
 import com.gtv.hanhee.novelreading.Model.BookSource;
-import com.gtv.hanhee.novelreading.Model.BookToc;
 import com.gtv.hanhee.novelreading.Model.BooksByTag;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
 import com.gtv.hanhee.novelreading.Model.HotReview;
@@ -24,13 +24,13 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class ReaderApi {
+public class BookApi {
 
-    public static ReaderApi instance;
+    public static BookApi instance;
 
-    private ReaderApiService service;
+    private BookApiService service;
 
-    public ReaderApi(OkHttpClient okHttpClient) {
+    public BookApi(OkHttpClient okHttpClient) {
         Gson gson = new GsonBuilder().setLenient().create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constant.API_BASE_URL)
@@ -38,12 +38,12 @@ public class ReaderApi {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-        service = retrofit.create(ReaderApiService.class);
+        service = retrofit.create(BookApiService.class);
     }
 
-    public static ReaderApi getInstance(OkHttpClient okHttpClient) {
+    public static BookApi getInstance(OkHttpClient okHttpClient) {
         if (instance == null)
-            instance = new ReaderApi(okHttpClient);
+            instance = new BookApi(okHttpClient);
         return instance;
     }
 
@@ -80,15 +80,16 @@ public class ReaderApi {
         return service.getBooksByTag(tags, start, limit);
     }
 
-    public Observable<BookToc> getBookToc(String bookId, String view) {
-        return service.getBookToc(bookId, view);
+    public Observable<BookMixAToc> getBookMixAToc(String bookId, String view) {
+        return service.getBookMixAToc(bookId, view);
     }
-
     public synchronized Observable<ChapterRead> getChapterRead(String url) {
         return service.getChapterRead(url);
     }
 
     public synchronized Observable<List<BookSource>> getBookSource(String view, String book) {
-        return service.getBookSource(view,book);
+        return service.getABookSource(view,book);
     }
+
+
 }

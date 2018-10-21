@@ -3,7 +3,7 @@ package com.gtv.hanhee.novelreading.Ui.Presenter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import com.gtv.hanhee.novelreading.Api.ReaderApi;
+import com.gtv.hanhee.novelreading.Api.BookApi;
 import com.gtv.hanhee.novelreading.Api.VietPhraseApi;
 import com.gtv.hanhee.novelreading.Model.AutoComplete;
 import com.gtv.hanhee.novelreading.Model.HotWord;
@@ -25,14 +25,14 @@ public class SearchPresenter implements SearchContract.Presenter<SearchContract.
     List<SearchDetail.SearchBooks> listSearchDetail = new ArrayList<>();
     List<HotWord.combineHotWord> combineHotWords = new ArrayList<>();
     private Context context;
-    private ReaderApi readerApi;
+    private BookApi bookApi;
     private VietPhraseApi vietPhraseApi;
     private SearchContract.View view;
 
     @Inject
-    public SearchPresenter(Context context, ReaderApi readerApi, VietPhraseApi vietPhraseApi) {
+    public SearchPresenter(Context context, BookApi bookApi, VietPhraseApi vietPhraseApi) {
         this.context = context;
-        this.readerApi = readerApi;
+        this.bookApi = bookApi;
         this.vietPhraseApi = vietPhraseApi;
     }
 
@@ -41,10 +41,15 @@ public class SearchPresenter implements SearchContract.Presenter<SearchContract.
         this.view = view;
     }
 
+    @Override
+    public void detachView() {
+
+    }
+
     @SuppressLint("CheckResult")
     public void getHotWordList() {
 
-        readerApi.getHotWord().subscribeOn(Schedulers.io())
+        bookApi.getHotWord().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::resultHotWord, this::Error);
         ;
@@ -77,7 +82,7 @@ public class SearchPresenter implements SearchContract.Presenter<SearchContract.
     @SuppressLint("CheckResult")
     @Override
     public void getAutoCompleteList(String query) {
-        readerApi.getAutoComplete(query).subscribeOn(Schedulers.io())
+        bookApi.getAutoComplete(query).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::ResultAutoCompleteList, this::Error);
     }
@@ -92,7 +97,7 @@ public class SearchPresenter implements SearchContract.Presenter<SearchContract.
     @SuppressLint("CheckResult")
     @Override
     public void getSearchResultList(String query) {
-        readerApi.getSearchResult(query).subscribeOn(Schedulers.io())
+        bookApi.getSearchResult(query).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::resultSearchResultList, this::Error);
     }
