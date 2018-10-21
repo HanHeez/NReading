@@ -17,14 +17,12 @@ import com.gtv.hanhee.novelreading.R;
 
 public class LoginPopupWindow extends PopupWindow implements View.OnTouchListener {
 
+    LoginTypeListener listener;
     private View mContentView;
     private Activity mActivity;
-
     private ImageView login;
     private ImageView gg;
     private ImageView fb;
-
-    LoginTypeListener listener;
 
 
     public LoginPopupWindow(Activity activity) {
@@ -67,7 +65,7 @@ public class LoginPopupWindow extends PopupWindow implements View.OnTouchListene
                 v.startAnimation(testAnim);
             }
         }
-        if (!isDown && listener!=null) {
+        if (!isDown && listener != null) {
             switch (v.getId()) {
                 case R.id.ivLogin:
                     listener.onLogin(login, "Login");
@@ -121,13 +119,13 @@ public class LoginPopupWindow extends PopupWindow implements View.OnTouchListene
         return false;
     }
 
+    public void setLoginTypeListener(LoginTypeListener listener) {
+        this.listener = listener;
+    }
+
     public interface LoginTypeListener {
 
         void onLogin(ImageView view, String type);
-    }
-
-    public void setLoginTypeListener(LoginTypeListener listener){
-        this.listener = listener;
     }
 
 }

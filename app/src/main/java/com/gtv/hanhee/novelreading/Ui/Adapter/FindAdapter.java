@@ -24,7 +24,7 @@ public class FindAdapter extends EasyRVAdapter<FindBean> {
     protected void onBindData(final EasyRVHolder holder, final int position, final FindBean item) {
 
         holder.setText(R.id.tvTitle, item.getTitle());
-        holder.setImageResource(R.id.ivIcon,item.getIconResId());
+        holder.setImageResource(R.id.ivIcon, item.getIconResId());
 
         holder.setOnItemViewClickListener(new View.OnClickListener() {
             @Override

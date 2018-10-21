@@ -8,7 +8,6 @@ import android.util.Log;
 import com.gtv.hanhee.novelreading.Api.BookApi;
 import com.gtv.hanhee.novelreading.Api.VietPhraseApi;
 import com.gtv.hanhee.novelreading.Model.BookMixAToc;
-import com.gtv.hanhee.novelreading.Model.BookSource;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
 import com.gtv.hanhee.novelreading.Ui.Contract.BookReadContract;
 import com.gtv.hanhee.novelreading.Utils.BookPageFactory;
@@ -25,15 +24,13 @@ import io.reactivex.schedulers.Schedulers;
 
 public class BookReadPresenter implements BookReadContract.Presenter<BookReadContract.View> {
 
+    private static final String TAG = "BookReadPresenter";
+    public boolean interrupted = true;
     VietPhraseApi vietPhraseApi;
     private Context context;
     private BookApi bookApi;
     private BookReadContract.View view;
     private AsyncTask<Integer, Integer, Integer> downloadTask;
-
-    private static final String TAG = "BookReadPresenter";
-
-    public boolean interrupted = true;
 
     @Inject
     public BookReadPresenter(Context context, BookApi bookApi, VietPhraseApi vietPhraseApi) {
@@ -152,7 +149,7 @@ public class BookReadPresenter implements BookReadContract.Presenter<BookReadCon
             @Override
             protected Integer doInBackground(Integer... params) {
                 for (int i = start; i < end && i <= list.size(); i++) {
-                    if(!interrupted) {
+                    if (!interrupted) {
                         if (factory.getBookFile(i).length() < 50) { // 认为章节文件不存在,则下载
                             BookMixAToc.mixToc.Chapters chapters = list.get(i - 1);
                             String url = chapters.link;
@@ -225,7 +222,7 @@ public class BookReadPresenter implements BookReadContract.Presenter<BookReadCon
         return result[0];
     }
 
-    public void cancelDownload(){
+    public void cancelDownload() {
         interrupted = true;
     }
 

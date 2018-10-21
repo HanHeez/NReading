@@ -23,9 +23,8 @@ import com.gtv.hanhee.novelreading.R;
 public abstract class BaseViewHolder<M> extends RecyclerView.ViewHolder {
 
     protected BaseViewHolder<M> holder;
-
-    private int mLayoutId;
     protected Context mContext;
+    private int mLayoutId;
     private View mConvertView;
     private SparseArray<View> mViews = new SparseArray<>();
 

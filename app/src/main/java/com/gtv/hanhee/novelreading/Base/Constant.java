@@ -21,30 +21,14 @@ public class Constant {
     public static final String IMG_BASE_URL = "http://statics.zhuishushenqi.com";
 
     public static final String API_BASE_URL = "http://api.zhuishushenqi.com";
-
-    public static String PATH_DATA = FileUtils.createRootPath(AppUtils.getAppContext()) + "/cache";
-
-    public static String PATH_COLLECT = FileUtils.createRootPath(AppUtils.getAppContext()) + "/collect";
-
-    public static String PATH_TXT = PATH_DATA + "/book/";
-
-    public static String PATH_EPUB = PATH_DATA + "/epub";
-
-    public static String PATH_CHM = PATH_DATA + "/chm";
-
-    public static String BASE_PATH = AppUtils.getAppContext().getCacheDir().getPath();
-
     public static final String ISNIGHT = "isNight";
-
     public static final String ISBYUPDATESORT = "isByUpdateSort";
     public static final String FLIP_STYLE = "flipStyle";
-
     public static final String SUFFIX_TXT = ".txt";
     public static final String SUFFIX_PDF = ".pdf";
     public static final String SUFFIX_EPUB = ".epub";
     public static final String SUFFIX_ZIP = ".zip";
     public static final String SUFFIX_CHM = ".chm";
-
     public static final int[] tagColors = new int[]{
             Color.parseColor("#90C5F0"),
             Color.parseColor("#91CED5"),
@@ -54,6 +38,48 @@ public class Constant {
             Color.parseColor("#67CCB7"),
             Color.parseColor("#F6BC7E")
     };
+    public static String PATH_DATA = FileUtils.createRootPath(AppUtils.getAppContext()) + "/cache";
+    public static String PATH_COLLECT = FileUtils.createRootPath(AppUtils.getAppContext()) + "/collect";
+    public static String PATH_TXT = PATH_DATA + "/book/";
+    public static String PATH_EPUB = PATH_DATA + "/epub";
+    public static String PATH_CHM = PATH_DATA + "/chm";
+    public static String BASE_PATH = AppUtils.getAppContext().getCacheDir().getPath();
+    public static List<String> sortTypeList = new ArrayList<String>() {{
+        add(SortType.DEFAULT);
+        add(SortType.CREATED);
+        add(SortType.COMMENT_COUNT);
+        add(SortType.HELPFUL);
+    }};
+    public static List<String> bookTypeList = new ArrayList<String>() {{
+        add(BookType.ALL);
+        add(BookType.XHQH);
+        add(BookType.WXXX);
+        add(BookType.DSYN);
+        add(BookType.LSJS);
+        add(BookType.YXJJ);
+        add(BookType.KHLY);
+        add(BookType.CYJK);
+        add(BookType.HMZC);
+        add(BookType.XDYQ);
+        add(BookType.GDYQ);
+        add(BookType.HXYQ);
+        add(BookType.DMTR);
+    }};
+    public static Map<String, String> bookType = new HashedMap<String, String>() {{
+        put("qt", "Khác");
+        put(BookType.XHQH, "Huyền huyễn kỳ huyễn");
+        put(BookType.WXXX, "Võ hiệp tiên hiệp");
+        put(BookType.DSYN, "Đô thị dị năng");
+        put(BookType.LSJS, "Lịch sử quân sự");
+        put(BookType.YXJJ, "Canh kỹ");
+        put(BookType.KHLY, "Khoa huyễn linh dị");
+        put(BookType.CYJK, "Xuyên không");
+        put(BookType.HMZC, "Hào môn tổng giám đốc");
+        put(BookType.XDYQ, "Hiện đại ngôn tình");
+        put(BookType.GDYQ, "Cổ đại ngôn tình");
+        put(BookType.HXYQ, "Ảo ngôn tình");
+        put(BookType.DMTR, "Đam mỹ đồng nhân");
+    }};
 
     //Thay thế cho enum
     @StringDef({
@@ -112,13 +138,6 @@ public class Constant {
         String COMMENT_COUNT = "comment-count";
     }
 
-    public static List<String> sortTypeList = new ArrayList<String>() {{
-        add(SortType.DEFAULT);
-        add(SortType.CREATED);
-        add(SortType.COMMENT_COUNT);
-        add(SortType.HELPFUL);
-    }};
-
     @StringDef({
             BookType.ALL,
             BookType.XHQH,
@@ -162,36 +181,4 @@ public class Constant {
 
         String DMTR = "dmtr";
     }
-
-    public static List<String> bookTypeList = new ArrayList<String>() {{
-        add(BookType.ALL);
-        add(BookType.XHQH);
-        add(BookType.WXXX);
-        add(BookType.DSYN);
-        add(BookType.LSJS);
-        add(BookType.YXJJ);
-        add(BookType.KHLY);
-        add(BookType.CYJK);
-        add(BookType.HMZC);
-        add(BookType.XDYQ);
-        add(BookType.GDYQ);
-        add(BookType.HXYQ);
-        add(BookType.DMTR);
-    }};
-
-    public static Map<String, String> bookType = new HashedMap<String, String>() {{
-        put("qt", "Khác");
-        put(BookType.XHQH, "Huyền huyễn kỳ huyễn");
-        put(BookType.WXXX, "Võ hiệp tiên hiệp");
-        put(BookType.DSYN, "Đô thị dị năng");
-        put(BookType.LSJS, "Lịch sử quân sự");
-        put(BookType.YXJJ, "Canh kỹ");
-        put(BookType.KHLY, "Khoa huyễn linh dị");
-        put(BookType.CYJK, "Xuyên không");
-        put(BookType.HMZC, "Hào môn tổng giám đốc");
-        put(BookType.XDYQ, "Hiện đại ngôn tình");
-        put(BookType.GDYQ, "Cổ đại ngôn tình");
-        put(BookType.HXYQ, "Ảo ngôn tình");
-        put(BookType.DMTR, "Đam mỹ đồng nhân");
-    }};
 }

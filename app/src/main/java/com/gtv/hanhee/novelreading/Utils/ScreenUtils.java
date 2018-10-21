@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Window;
@@ -14,13 +13,6 @@ import android.view.WindowManager;
 import java.lang.reflect.Field;
 
 public class ScreenUtils {
-
-    public enum EScreenDensity {
-        XXHDPI,    //超高分辨率    1080×1920
-        XHDPI,    //超高分辨率    720×1280
-        HDPI,    //高分辨率         480×800
-        MDPI,    //中分辨率         320×480
-    }
 
     public static EScreenDensity getDisply(Context context) {
         EScreenDensity eScreenDensity;
@@ -122,23 +114,6 @@ public class ScreenUtils {
             return actionBarHeight;
         }
         return 0;
-    }
-
-    private int getStatusBarHeight() {
-        Class<?> c = null;
-        Object obj = null;
-        Field field = null;
-        int x = 0, sbar = 0;
-        try {
-            c = Class.forName("com.android.internal.R$dimen");
-            obj = c.newInstance();
-            field = c.getField("status_bar_height");
-            x = Integer.parseInt(field.get(obj).toString());
-            sbar = AppUtils.getAppContext().getResources().getDimensionPixelSize(x);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
-        return sbar;
     }
 
     /**
@@ -302,5 +277,29 @@ public class ScreenUtils {
         float f = paramInt / 100.0F;
         localLayoutParams.screenBrightness = f;
         localWindow.setAttributes(localLayoutParams);
+    }
+
+    private int getStatusBarHeight() {
+        Class<?> c = null;
+        Object obj = null;
+        Field field = null;
+        int x = 0, sbar = 0;
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            sbar = AppUtils.getAppContext().getResources().getDimensionPixelSize(x);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return sbar;
+    }
+
+    public enum EScreenDensity {
+        XXHDPI,    //超高分辨率    1080×1920
+        XHDPI,    //超高分辨率    720×1280
+        HDPI,    //高分辨率         480×800
+        MDPI,    //中分辨率         320×480
     }
 }

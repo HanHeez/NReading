@@ -2,18 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/common_bg"
     android:layout_marginLeft="30dp"
-    android:layout_marginRight="30dp">
+    android:layout_marginRight="30dp"
+    android:background="@color/common_bg">
 
     <ImageView
         android:id="@+id/mIvClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:background="@drawable/ugcbook_delete" />
 
     <ImageView
@@ -59,9 +59,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/bg_male_button_selector"
             android:text="Nam sinh tiểu thuyết"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_male_button_selector"/>
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/mBtnFemale"
@@ -69,8 +69,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_weight="1"
+            android:background="@drawable/bg_female_button_selector"
             android:text="Nữ sinh tiểu thuyết"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_female_button_selector"/>
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </RelativeLayout>

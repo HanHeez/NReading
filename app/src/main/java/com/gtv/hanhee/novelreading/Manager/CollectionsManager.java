@@ -3,7 +3,6 @@ package com.gtv.hanhee.novelreading.Manager;
 import android.text.TextUtils;
 
 import com.gtv.hanhee.novelreading.Base.Constant;
-import com.gtv.hanhee.novelreading.Manager.CacheManager;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.Ui.Presenter.MainActivityPresenter;
 import com.gtv.hanhee.novelreading.Utils.ACache;
@@ -42,7 +41,7 @@ public class CollectionsManager {
     }
 
     /**
-     * 获取收藏列表
+     * Lấy danh sách các mục yêu thích
      *
      * @return
      */

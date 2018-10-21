@@ -138,10 +138,10 @@
         android:id="@+id/gvTheme"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginBottom="15dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="15dp"
         android:listSelector="@android:color/transparent"
         android:numColumns="6"
         android:scrollbars="none" />

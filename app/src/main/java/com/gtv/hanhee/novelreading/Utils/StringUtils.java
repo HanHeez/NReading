@@ -7,7 +7,7 @@ public class StringUtils {
         for (Object o : param) {
             key += "-" + o;
         }
-        return key.replaceFirst("-","");
+        return key.replaceFirst("-", "");
     }
 
     /**

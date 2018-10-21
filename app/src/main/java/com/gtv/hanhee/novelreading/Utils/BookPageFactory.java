@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.text.TextUtils;
 
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
+
 import org.apache.commons.collections4.map.LRUMap;
 
 import java.io.BufferedReader;
@@ -15,29 +16,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class BookPageFactory {
 
+    private static LRUMap<String, ArrayList<String>> cache = new LRUMap<>(10);
     private int mWidth;
     private int mHeight;
     private int mMarginWidth = 10; //
     private int mMarginHeight = 10; //
     private float mVisibleHeight; // chiều cao nội dung
     private float mVisibleWidth; // chiều cao nội dung
-
     private Paint mPaint;
     private int mFontSize = 16; //dp
     private float mFontSizePx;
     private int mTextColor = Color.LTGRAY;
-
     private int mLineCount = 0; // số hàng trên mỗi trang
     private int mLineWordCount = 0; // số từ trên mỗi dòng
-
     private String bookId;
     private String basePath = FileUtils.createRootPath(AppUtils.getAppContext()) + "/book/";
-
-    private static LRUMap<String, ArrayList<String>> cache = new LRUMap<>(10);
 
     //id sách + chiều cao của dòng
     public BookPageFactory(String bookId, int lineHeight) {

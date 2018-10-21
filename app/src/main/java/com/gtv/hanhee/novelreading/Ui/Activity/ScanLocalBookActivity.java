@@ -2,8 +2,6 @@ package com.gtv.hanhee.novelreading.Ui.Activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Component.AppComponent;

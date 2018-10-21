@@ -8,15 +8,23 @@ import java.util.List;
 
 public class RecommendTabLayoutAdapter extends FragmentStatePagerAdapter {
     List<Fragment> fragmentList;
+    String[] mDatas;
 
-    public RecommendTabLayoutAdapter(FragmentManager fm, List<Fragment> fragmentList) {
+    public RecommendTabLayoutAdapter(FragmentManager fm, List<Fragment> fragmentList, String[] mDatas) {
         super(fm);
         this.fragmentList = fragmentList;
+        this.mDatas = mDatas;
+
     }
 
     @Override
     public Fragment getItem(int i) {
         return fragmentList.get(i);
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mDatas[position];
     }
 
     @Override

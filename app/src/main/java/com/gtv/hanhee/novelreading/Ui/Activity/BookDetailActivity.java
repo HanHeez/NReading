@@ -115,12 +115,12 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
 
     @Override
     public void initDatas() {
-        bookId=getIntent().getStringExtra("bookId");
+        bookId = getIntent().getStringExtra("bookId");
     }
 
     @Override
     public void configViews() {
-        setSupportActionBar(mCommonToolbar);
+
 
         mRvHotReview.setHasFixedSize(true);
         mRvHotReview.setLayoutManager(new LinearLayoutManager(this));

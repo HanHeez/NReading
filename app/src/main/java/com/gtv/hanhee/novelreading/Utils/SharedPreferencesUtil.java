@@ -25,6 +25,9 @@ public class SharedPreferencesUtil {
     public SharedPreferences prefs;
     public SharedPreferences.Editor editor;
 
+    private SharedPreferencesUtil() {
+    }
+
     public synchronized static SharedPreferencesUtil getInstance() {
         return prefsUtil;
     }
@@ -35,10 +38,6 @@ public class SharedPreferencesUtil {
         prefsUtil.prefs = prefsUtil.context.getSharedPreferences(prefsname, mode);
         prefsUtil.editor = prefsUtil.prefs.edit();
     }
-
-    private SharedPreferencesUtil() {
-    }
-
 
     public boolean getBoolean(String key, boolean defaultVal) {
         return this.prefs.getBoolean(key, defaultVal);

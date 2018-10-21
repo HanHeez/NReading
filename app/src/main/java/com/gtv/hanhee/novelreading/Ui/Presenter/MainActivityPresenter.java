@@ -1,9 +1,12 @@
 package com.gtv.hanhee.novelreading.Ui.Presenter;
 
+import android.util.Log;
+
 import com.gtv.hanhee.novelreading.Api.BookApi;
 import com.gtv.hanhee.novelreading.Base.RxPresenter;
 import com.gtv.hanhee.novelreading.Manager.CollectionsManager;
 import com.gtv.hanhee.novelreading.Model.BookMixAToc;
+import com.gtv.hanhee.novelreading.Model.Login;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.Ui.Contract.MainContract;
 import com.gtv.hanhee.novelreading.Utils.LogUtils;
@@ -33,8 +36,8 @@ public class MainActivityPresenter extends RxPresenter<MainContract.View> implem
         this.bookApi = bookApi;
     }
 
-    @Override
-    public void login(String uid, String token, String platform) {
+//    @Override
+//    public void login(String uid, String token, String platform) {
 //        Subscription rxSubscription = bookApi.login(uid, token, platform).subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe(new Observer<Login>() {
@@ -56,37 +59,38 @@ public class MainActivityPresenter extends RxPresenter<MainContract.View> implem
 //                    }
 //                });
 //        addSubscrebe(rxSubscription);
+//    }
+
+    @Override
+    public void login(String uid, String token, String platform) {
+
     }
 
     @Override
     public void syncBookShelf() {
         List<Recommend.RecommendBooks> list = CollectionsManager.getInstance().getCollectionList();
+
         List<Observable<BookMixAToc.mixToc>> observables = new ArrayList<>();
         if (list != null && !list.isEmpty()) {
+            //Lấy chương của từng phần từ trong RecommendBooks
             for (Recommend.RecommendBooks bean : list) {
                 if (!bean.isFromSD) {
                     Observable<BookMixAToc.mixToc> fromNetWork = bookApi.getBookMixAToc(bean._id, "chapters")
-                            .map(new Function<BookMixAToc, BookMixAToc.mixToc>() {
-                                @Override
-                                public BookMixAToc.mixToc apply(BookMixAToc bookMixAToc) throws Exception {
-                                    return bookMixAToc.mixToc;
-                                }
-                            })
-//                    .compose(RxUtil.<BookMixAToc.mixToc>rxCacheListHelper(
-//                            StringUtils.creatAcacheKey("book-toc", bean._id, "chapters")))
-                            ;
+                            .map(bookMixAToc -> bookMixAToc.mixToc);
                     observables.add(fromNetWork);
                 }
             }
         } else {
-            ToastUtils.showSingleToast("书架空空如也...");
+            ToastUtils.showSingleToast("Kệ sách trống...");
             mView.syncBookShelfCompleted();
             return;
         }
         isLastSyncUpdateed = false;
-        Observable<BookMixAToc.mixToc> rxObservable = Observable.mergeDelayError(observables);
 
-                rxObservable.subscribeOn(Schedulers.io())
+
+
+        Observable.mergeDelayError(observables)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BookMixAToc.mixToc>() {
                     @Override
@@ -104,22 +108,14 @@ public class MainActivityPresenter extends RxPresenter<MainContract.View> implem
                     @Override
                     public void onError(Throwable e) {
                         LogUtils.e("onError: " + e);
-//                        mView.showError();
+                        mView.showError();
                     }
 
                     @Override
                     public void onComplete() {
-                        mView.syncBookShelfCompleted();
-                        if (isLastSyncUpdateed) {
-                            ToastUtils.showSingleToast("小説已更新");
-                        } else {
-                            ToastUtils.showSingleToast("你追的小説沒有更新");
-                        }
 
                     }
                 });
 
-
-//        addSubscrebe();
     }
 }

@@ -414,19 +414,19 @@ public class TagGroup extends ViewGroup {
     }
 
     /**
+     * @see #setTags(String...)
+     */
+    public void setTags(List<String> tagList) {
+        setTags(tagList.toArray(new String[tagList.size()]));
+    }
+
+    /**
      * Set the tags. It will remove all previous tags first.
      *
      * @param tags the tag list to set.
      */
     public void setTags(String... tags) {
         setTags(null, tags);
-    }
-
-    /**
-     * @see #setTags(String...)
-     */
-    public void setTags(List<String> tagList) {
-        setTags(tagList.toArray(new String[tagList.size()]));
     }
 
     public void setTags(List<TagColor> colors, String... tags) {

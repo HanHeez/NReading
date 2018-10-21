@@ -11,9 +11,11 @@ import com.gtv.hanhee.novelreading.Model.BooksByTag;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
 import com.gtv.hanhee.novelreading.Model.HotReview;
 import com.gtv.hanhee.novelreading.Model.HotWord;
+import com.gtv.hanhee.novelreading.Model.Login;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.Model.RecommendBookList;
 import com.gtv.hanhee.novelreading.Model.SearchDetail;
+import com.gtv.hanhee.novelreading.Model.User.LoginReq;
 
 import java.util.List;
 
@@ -83,13 +85,21 @@ public class BookApi {
     public Observable<BookMixAToc> getBookMixAToc(String bookId, String view) {
         return service.getBookMixAToc(bookId, view);
     }
+
     public synchronized Observable<ChapterRead> getChapterRead(String url) {
         return service.getChapterRead(url);
     }
 
     public synchronized Observable<List<BookSource>> getBookSource(String view, String book) {
-        return service.getABookSource(view,book);
+        return service.getABookSource(view, book);
     }
 
+    public Observable<Login> login(String platform_uid, String platform_token, String platform_code) {
+        LoginReq loginReq = new LoginReq();
+        loginReq.platform_code = platform_code;
+        loginReq.platform_token = platform_token;
+        loginReq.platform_uid = platform_uid;
+        return service.login(loginReq);
+    }
 
 }

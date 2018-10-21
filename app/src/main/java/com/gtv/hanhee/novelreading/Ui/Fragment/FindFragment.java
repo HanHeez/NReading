@@ -33,10 +33,10 @@ public class FindFragment extends BaseFragment implements
     @Override
     public void initDatas() {
         mList.clear();
-        mList.add(new FindBean("排行榜",R.drawable.home_find_rank));
-        mList.add(new FindBean("主题书单",R.drawable.home_find_topic));
-        mList.add(new FindBean("分类",R.drawable.home_find_category));
-        mList.add(new FindBean("有声小说",R.drawable.home_find_listen));
+        mList.add(new FindBean("排行榜", R.drawable.home_find_rank));
+        mList.add(new FindBean("主题书单", R.drawable.home_find_topic));
+        mList.add(new FindBean("分类", R.drawable.home_find_category));
+        mList.add(new FindBean("有声小说", R.drawable.home_find_listen));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class FindFragment extends BaseFragment implements
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mAdapter = new FindAdapter(mContext, mList,this);
+        mAdapter = new FindAdapter(mContext, mList, this);
         mRecyclerView.setAdapter(mAdapter);
 
     }
@@ -56,7 +56,7 @@ public class FindFragment extends BaseFragment implements
 
     @Override
     public void onItemClick(View view, int position, FindBean data) {
-        switch (position){
+        switch (position) {
             case 0:
                 // startActivity(new Intent(activity, BookReadActivity.class));
                 break;

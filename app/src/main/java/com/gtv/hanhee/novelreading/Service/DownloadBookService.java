@@ -38,13 +38,18 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public class DownloadBookService extends Service {
 
     public static List<DownloadQueue> downloadQueues = new ArrayList<>();
-
+    public static boolean canceled = false;
     public BookApi bookApi;
+    public boolean isBusy = false; // Có thread tải xuống đang diễn ra không
     protected CompositeDisposable mCompositeDisposable;
 
-    public boolean isBusy = false; // 当前是否有下载任务在进行
+    public static void post(DownloadQueue downloadQueue) {
+        EventBus.getDefault().post(downloadQueue);
+    }
 
-    public static boolean canceled = false;
+    public static void cancel() {
+        canceled = true;
+    }
 
     @Override
     public void onCreate() {
@@ -78,10 +83,6 @@ public class DownloadBookService extends Service {
         EventBus.getDefault().unregister(this);
     }
 
-    public static void post(DownloadQueue downloadQueue) {
-        EventBus.getDefault().post(downloadQueue);
-    }
-
     public void post(DownloadProgress progress) {
         EventBus.getDefault().post(progress);
     }
@@ -94,7 +95,7 @@ public class DownloadBookService extends Service {
     public synchronized void addToDownloadQueue(DownloadQueue queue) {
         if (!TextUtils.isEmpty(queue.bookId)) {
             boolean exists = false;
-            // 判断当前书籍缓存任务是否存在
+            // Xác định xem tác vụ bộ nhớ cache sách hiện tại có tồn tại hay không
             for (int i = 0; i < downloadQueues.size(); i++) {
                 if (downloadQueues.get(i).bookId.equals(queue.bookId)) {
                     LogUtils.e("addToDownloadQueue:exists");
@@ -103,16 +104,16 @@ public class DownloadBookService extends Service {
                 }
             }
             if (exists) {
-                post(new DownloadMessage(queue.bookId, "当前缓存任务已存在", false));
+                post(new DownloadMessage(queue.bookId, "Tác vụ bộ nhớ cache hiện tại đã tồn tại", false));
                 return;
             }
 
-            // 添加到下载队列
+            // được thêm vào hàng đợi tải xuống
             downloadQueues.add(queue);
             LogUtils.e("addToDownloadQueue:" + queue.bookId);
-            post(new DownloadMessage(queue.bookId, "成功加入缓存队列", false));
+            post(new DownloadMessage(queue.bookId, "Thành công đăng nhập vào bộ nhớ cache", false));
         }
-        // 从队列顺序取出第一条下载
+        // Lấy bản tải xuống đầu tiên từ thứ tự hàng đợi
         if (downloadQueues.size() > 0 && !isBusy) {
             isBusy = true;
             downloadBook(downloadQueues.get(0));
@@ -124,8 +125,8 @@ public class DownloadBookService extends Service {
 
             List<BookMixAToc.mixToc.Chapters> list = downloadQueue.list;
             String bookId = downloadQueue.bookId;
-            int start = downloadQueue.start; // 起始章节
-            int end = downloadQueue.end; // 结束章节
+            int start = downloadQueue.start; // bắt đầu download
+            int end = downloadQueue.end; // End
 
             @Override
             protected Integer doInBackground(Integer... params) {
@@ -138,7 +139,7 @@ public class DownloadBookService extends Service {
                     if (canceled) {
                         break;
                     }
-                    // 网络异常，取消下载
+                    // lỗi mạng, hủy tải về
                     if (!NetworkUtils.isAvailable(AppUtils.getAppContext())) {
                         downloadQueue.isCancel = true;
                         post(new DownloadMessage(bookId, getString(R.string.book_read_download_error), true));
@@ -146,7 +147,7 @@ public class DownloadBookService extends Service {
                         break;
                     }
                     if (!downloadQueue.isFinish && !downloadQueue.isCancel) {
-                        // 章节文件不存在,则下载，否则跳过
+                        // file chương ko tồn tại, tải về sau, nếu không thì bỏ qua
                         if (CacheManager.getInstance().getChapterFile(bookId, i) == null) {
                             BookMixAToc.mixToc.Chapters chapters = list.get(i - 1);
                             String url = chapters.link;
@@ -178,18 +179,18 @@ public class DownloadBookService extends Service {
                     post(new DownloadMessage(bookId,
                             String.format(getString(R.string.book_read_download_complete), failureCount), true));
                 }
-                // 下载完成，从队列里移除
+                // tải về xong, loại bỏ nó khỏi hàng đợi
                 downloadQueues.remove(downloadQueue);
-                // 释放 空闲状态
+                // giải phóng trạng thái tải
                 isBusy = false;
                 if (!canceled) {
-                    // post一个空事件，通知继续执行下一个任务
+                    //  post new EventBus, thông báo để tiếp tục công việc tiếp theo
                     post(new DownloadQueue());
                 } else {
                     downloadQueues.clear();
                 }
                 canceled = false;
-                LogUtils.i(bookId + "缓存完成，失败" + failureCount + "章");
+                LogUtils.i(bookId + "Đã hoàn thành bộ nhớ cache, không thành công" + failureCount + "chương");
             }
         };
         downloadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -198,7 +199,6 @@ public class DownloadBookService extends Service {
     private int download(String url, final String bookId, final String title, final int chapter, final int chapterSize) {
 
         final int[] result = {-1};
-
 
         Disposable disposable = bookApi.getChapterRead(url)
                 .subscribeOn(Schedulers.io())
@@ -241,10 +241,6 @@ public class DownloadBookService extends Service {
             }
         }
         return result[0];
-    }
-
-    public static void cancel() {
-        canceled = true;
     }
 
     protected void unSubscribe() {

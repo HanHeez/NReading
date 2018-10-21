@@ -33,10 +33,10 @@
             android:id="@+id/ivBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
             android:paddingLeft="10dp"
-            android:paddingRight="15dp"
             android:paddingTop="5dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="5dp"
             android:src="@drawable/ab_back" />
 
         <TextView
@@ -102,9 +102,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/llBookReadBottom"
         android:background="#89232323"
-        android:paddingBottom="10dp"
         android:paddingLeft="25dp"
         android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:singleLine="true"
         android:text="@string/book_read_download_progress"
         android:textColor="@color/white"

@@ -7,20 +7,18 @@ import java.util.Date;
 
 public class FormatUtils {
 
+    public final static String FORMAT_DATE_TIME = "yyyy-MM-dd HH:mm:ss.SSS";
     private static final long ONE_MINUTE = 60000L;
     private static final long ONE_HOUR = 3600000L;
     private static final long ONE_DAY = 86400000L;
     private static final long ONE_WEEK = 604800000L;
-
     private static final String ONE_SECOND_AGO = "秒前";
     private static final String ONE_MINUTE_AGO = "分钟前";
     private static final String ONE_HOUR_AGO = "小时前";
     private static final String ONE_DAY_AGO = "天前";
     private static final String ONE_MONTH_AGO = "月前";
     private static final String ONE_YEAR_AGO = "年前";
-
     private static SimpleDateFormat sdf = new SimpleDateFormat();
-    public final static String FORMAT_DATE_TIME = "yyyy-MM-dd HH:mm:ss.SSS";
 
     /**
      * 获取当前日期的指定格式的字符串

@@ -10,7 +10,6 @@ import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
 import com.gtv.hanhee.novelreading.Component.DaggerBookReadActivityComponent;
 import com.gtv.hanhee.novelreading.Model.BookMixAToc;
-import com.gtv.hanhee.novelreading.Model.BookSource;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.R;
@@ -29,7 +28,23 @@ import butterknife.BindView;
  */
 public class BookReadActivity extends BaseActivity implements BookReadContract.View {
 
-//    @BindView(R.id.ivBack)
+    /**
+     * 朗读 播放器
+     */
+//    private TTSPlayer mTtsPlayer;
+//    private TtsConfig ttsConfig;
+//
+//    private BaseReadView mPageWidget;
+//    private int curTheme = -1;
+//    private List<ReadTheme> themes;
+//    private ReadThemeAdapter gvAdapter;
+//    private Receiver receiver = new Receiver();
+//    private IntentFilter intentFilter = new IntentFilter();
+//    private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
+    public static final String INTENT_BEAN = "recommendBooksBean";
+    public static final String INTENT_SD = "isFromSD";
+    //    @BindView(R.id.ivBack)
 //    ImageView mIvBack;
 //    @BindView(R.id.tvBookReadReading)
 //    TextView mTvBookReadReading;
@@ -59,12 +74,25 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
 //    LinearLayout mLlBookReadBottom;
     @BindView(R.id.rlBookReadRoot)
     RelativeLayout mRlBookReadRoot;
-//    @BindView(R.id.tvDownloadProgress)
+//    @BindView(R.id.tvAddMark)
+//    TextView tvAddMark;
+//    @BindView(R.id.lvMark)
+//    ListView lvMark;
+//
+//    @BindView(R.id.cbVolume)
+//    CheckBox cbVolume;
+//    @BindView(R.id.cbAutoBrightness)
+//    CheckBox cbAutoBrightness;
+//    @BindView(R.id.gvTheme)
+//    GridView gvTheme;
+//
+//    private View decodeView;
+    //    @BindView(R.id.tvDownloadProgress)
 //    TextView mTvDownloadProgress;
 //
     @BindView(R.id.rlReadAaSet)
     LinearLayout rlReadAaSet;
-//    @BindView(R.id.ivBrightnessMinus)
+    //    @BindView(R.id.ivBrightnessMinus)
 //    ImageView ivBrightnessMinus;
 //    @BindView(R.id.seekbarLightness)
 //    SeekBar seekbarLightness;
@@ -79,55 +107,20 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
 //
     @BindView(R.id.rlReadMark)
     LinearLayout rlReadMark;
-//    @BindView(R.id.tvAddMark)
-//    TextView tvAddMark;
-//    @BindView(R.id.lvMark)
-//    ListView lvMark;
-//
-//    @BindView(R.id.cbVolume)
-//    CheckBox cbVolume;
-//    @BindView(R.id.cbAutoBrightness)
-//    CheckBox cbAutoBrightness;
-//    @BindView(R.id.gvTheme)
-//    GridView gvTheme;
-//
-//    private View decodeView;
-
-    @Inject
-    BookReadPresenter mPresenter;
-
-    private List<BookMixAToc.mixToc.Chapters> mChapterList = new ArrayList<>();
 //    private ListPopupWindow mTocListPopupWindow;
 //    private TocListAdapter mTocListAdapter;
 //
 //    private List<BookMark> mMarkList;
 //    private BookMarkAdapter mMarkAdapter;
-
+    @Inject
+    BookReadPresenter mPresenter;
+    private List<BookMixAToc.mixToc.Chapters> mChapterList = new ArrayList<>();
     private int currentChapter = 1;
-
     /**
      * 是否开始阅读章节
      **/
     private boolean startRead = false;
-
-    /**
-     * 朗读 播放器
-     */
-//    private TTSPlayer mTtsPlayer;
-//    private TtsConfig ttsConfig;
-//
-//    private BaseReadView mPageWidget;
-//    private int curTheme = -1;
-//    private List<ReadTheme> themes;
-//    private ReadThemeAdapter gvAdapter;
-//    private Receiver receiver = new Receiver();
-//    private IntentFilter intentFilter = new IntentFilter();
-//    private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-
-    public static final String INTENT_BEAN = "recommendBooksBean";
-    public static final String INTENT_SD = "isFromSD";
-
-//    private Recommend.RecommendBooks recommendBooks;
+    //    private Recommend.RecommendBooks recommendBooks;
     private String bookId;
 
     private boolean isAutoLightness = false; // Ghi lại liệu các trang khác có tự động điều chỉnh độ sáng hay không

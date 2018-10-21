@@ -54,14 +54,14 @@ public class BookReadFrameLayout extends FrameLayout {
                         && mOnScreenClickListener != null) {
                     int sHeight = ScreenUtils.getScreenHeight();
                     int sWidth = ScreenUtils.getScreenWidth();
-                    int heightOff = sHeight/4;
-                    int widthOff =  sWidth/3;
+                    int heightOff = sHeight / 4;
+                    int widthOff = sWidth / 3;
                     if (preX < widthOff || preY < heightOff) {
                         mOnScreenClickListener.onSideClick(true);
                         break;
                     }
 
-                    if (preX > widthOff*2 || preY > heightOff*3) {
+                    if (preX > widthOff * 2 || preY > heightOff * 3) {
                         mOnScreenClickListener.onSideClick(false);
                         break;
                     }
@@ -82,9 +82,9 @@ public class BookReadFrameLayout extends FrameLayout {
 
     public interface OnScreenClickListener {
 
-        void onSideClick(boolean isLeft) ;
+        void onSideClick(boolean isLeft);
 
-        void onCenterClick() ;
+        void onCenterClick();
     }
 }
 

@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.gtv.hanhee.novelreading.Base.BaseFragment;
 import com.gtv.hanhee.novelreading.Common.OnRvItemClickListener;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
-
 import com.gtv.hanhee.novelreading.Component.DaggerRecommendFragmentComponent;
+import com.gtv.hanhee.novelreading.Manager.CollectionsManager;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.R;
 import com.gtv.hanhee.novelreading.Ui.Activity.BookReadActivity;
@@ -85,6 +84,11 @@ public class RecommendFragment extends BaseFragment implements RecommendContract
         mList.clear();
         mList.addAll(list);
         mAdapter.notifyDataSetChanged();
+
+        for (Recommend.RecommendBooks bean : list) {
+            //TODO thêm truyện recommend vào collection
+            CollectionsManager.getInstance().add(bean);
+        }
     }
 
 

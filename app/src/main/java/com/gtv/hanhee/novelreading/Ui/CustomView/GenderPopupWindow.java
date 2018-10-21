@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import com.gtv.hanhee.novelreading.Base.Constant;
-import com.gtv.hanhee.novelreading.Model.Support.UserSexChooseFinishedEvent;
 import com.gtv.hanhee.novelreading.Manager.SettingManager;
+import com.gtv.hanhee.novelreading.Model.Support.UserSexChooseFinishedEvent;
 import com.gtv.hanhee.novelreading.R;
 
 import org.greenrobot.eventbus.EventBus;

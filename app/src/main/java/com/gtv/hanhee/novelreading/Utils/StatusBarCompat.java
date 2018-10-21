@@ -3,7 +3,6 @@ package com.gtv.hanhee.novelreading.Utils;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.view.View;

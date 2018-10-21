@@ -11,7 +11,6 @@ import android.view.View;
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Common.OnRvItemClickListener;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
-
 import com.gtv.hanhee.novelreading.Component.DaggerBooksByTagActivityComponent;
 import com.gtv.hanhee.novelreading.Model.BooksByTag;
 import com.gtv.hanhee.novelreading.R;
@@ -71,7 +70,7 @@ public class BooksByTagActivity extends BaseActivity implements BooksByTagContra
 
     @Override
     public void configViews() {
-        setSupportActionBar(mToolbar);
+
 
         refreshLayout.setOnRefreshListener(new RefreshListener());
 

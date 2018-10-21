@@ -77,7 +77,6 @@
     </declare-styleable>
 
     <declare-styleable name="DirectionalViewpager">
-        <attr name="direction" format="string">
-        </attr>
+        <attr name="direction" format="string"></attr>
     </declare-styleable>
 </resources>

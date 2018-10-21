@@ -2,19 +2,17 @@ package com.gtv.hanhee.novelreading.Base;
 
 import com.gtv.hanhee.novelreading.Ui.Contract.BaseContract;
 
-import org.reactivestreams.Subscription;
-
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 public class RxPresenter<T extends BaseContract.BaseView> implements BaseContract.BasePresenter<T> {
 
     protected T mView;
-    protected CompositeDisposable compositeDisposable;
+    protected static CompositeDisposable compositeDisposable;
 
     protected void unSubscribe() {
         if (compositeDisposable != null) {
-            compositeDisposable.clear();
+            compositeDisposable.dispose();
         }
     }
 
@@ -23,6 +21,13 @@ public class RxPresenter<T extends BaseContract.BaseView> implements BaseContrac
             compositeDisposable = new CompositeDisposable();
         }
         compositeDisposable.add(disposable);
+    }
+
+    private static CompositeDisposable getCompositeDisposable() {
+        if (compositeDisposable == null || compositeDisposable.isDisposed()) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        return compositeDisposable;
     }
 
     @Override

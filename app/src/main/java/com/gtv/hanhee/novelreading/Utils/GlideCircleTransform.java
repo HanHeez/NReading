@@ -1,6 +1,5 @@
 package com.gtv.hanhee.novelreading.Utils;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;

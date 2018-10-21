@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import com.gtv.hanhee.novelreading.Component.AppComponent;
-
 import com.gtv.hanhee.novelreading.Component.DaggerAppComponent;
 import com.gtv.hanhee.novelreading.Module.AppModule;
 import com.gtv.hanhee.novelreading.Module.BookApiModule;
@@ -16,6 +15,10 @@ public class ReaderApplication extends Application {
     private static ReaderApplication sInstance;
     private AppComponent appComponent;
 
+    public static ReaderApplication getsInstance() {
+        return sInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,10 +29,6 @@ public class ReaderApplication extends Application {
 
 //        initNightMode();
 //        initHciCloud();
-    }
-
-    public static ReaderApplication getsInstance() {
-        return sInstance;
     }
 
     private void initCompoent() {
@@ -83,7 +82,6 @@ public class ReaderApplication extends Application {
 //        }
 //        LogUtils.e("HciCloud初始化成功");
 //    }
-
     protected void initPrefs() {
         SharedPreferencesUtil.init(getApplicationContext(), getPackageName() + "_preference", Context.MODE_MULTI_PROCESS);
     }

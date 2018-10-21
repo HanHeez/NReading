@@ -3,8 +3,6 @@ package com.gtv.hanhee.novelreading.Utils;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.gtv.hanhee.novelreading.Utils.AppUtils;
-
 /**
  * Toast工具类，解决多个Toast同时出现的问题
  *

@@ -3,7 +3,6 @@ package com.gtv.hanhee.novelreading.Ui.Activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.menu.MenuBuilder;
@@ -14,12 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 
-import com.flyco.tablayout.CommonTabLayout;
-import com.flyco.tablayout.listener.CustomTabEntity;
-import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.google.gson.Gson;
+import com.flyco.tablayout.SlidingTabLayout;
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Base.Constant;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
@@ -32,56 +27,39 @@ import com.gtv.hanhee.novelreading.Ui.Adapter.RecommendTabLayoutAdapter;
 import com.gtv.hanhee.novelreading.Ui.Contract.MainContract;
 import com.gtv.hanhee.novelreading.Ui.CustomView.GenderPopupWindow;
 import com.gtv.hanhee.novelreading.Ui.CustomView.LoginPopupWindow;
-import com.gtv.hanhee.novelreading.Ui.CustomView.TabEntity;
 import com.gtv.hanhee.novelreading.Ui.Fragment.CommunityFragment;
 import com.gtv.hanhee.novelreading.Ui.Fragment.FindFragment;
 import com.gtv.hanhee.novelreading.Ui.Fragment.RecommendFragment;
 import com.gtv.hanhee.novelreading.Ui.Presenter.MainActivityPresenter;
-import com.gtv.hanhee.novelreading.Utils.LogUtils;
 import com.gtv.hanhee.novelreading.Utils.SharedPreferencesUtil;
 import com.gtv.hanhee.novelreading.Utils.ToastUtils;
 
-import org.json.JSONObject;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-//import com.gtv.hanhee.novelreading.Component.DaggerMainActivityComponent;
-
 public class MainActivity extends BaseActivity implements MainContract.View, LoginPopupWindow.LoginTypeListener {
 
+    // Thời gian nhấn phím back ứng dụng
+    private static final int BACK_PRESSED_INTERVAL = 2000;
     @BindView(R.id.common_toolbar)
     Toolbar mToolbar;
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
     @BindView(R.id.tabLayout)
-    CommonTabLayout tabLayout;
-
+    SlidingTabLayout tabLayout;
     String[] mDatas = new String[]{};
-    private FragmentPagerAdapter mAdapter;
-    List<Fragment> mTabContents;
-
     RecommendTabLayoutAdapter recommendTabLayoutAdapter;
-
-
-    ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     @Inject
     MainActivityPresenter mPresenter;
-    private int[] mIconUnselectIds;
-    private int[] mIconSelectIds;
+    private List<Fragment> mTabContents;
 
-
-    // 退出时间
+    // Thời gian thoát
     private long currentBackPressedTime = 0;
-    // 退出间隔
-    private static final int BACK_PRESSED_INTERVAL = 2000;
-
     private LoginPopupWindow popupWindow;
     private GenderPopupWindow genderPopupWindow;
 
@@ -96,12 +74,10 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
                 .appComponent(appComponent)
                 .build()
                 .inject(this);
-        startService(new Intent(this, DownloadBookService.class));
     }
 
     @Override
     public void initToolBar() {
-//        mToolbar.setLogo(R.drawable.facebook);
         setTitle("");
     }
 
@@ -112,62 +88,27 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
     @Override
     public void initDatas() {
         startService(new Intent(this, DownloadBookService.class));
-
         mTabContents = new ArrayList<>();
         mDatas = getResources().getStringArray(R.array.home_tabs);
-        mIconUnselectIds = new int[mDatas.length];
-        mIconSelectIds = new int[mDatas.length];
+
         mTabContents = new ArrayList<>();
-        recommendTabLayoutAdapter = new RecommendTabLayoutAdapter(getSupportFragmentManager(), mTabContents);
+        mTabContents.add(new RecommendFragment());
+        mTabContents.add(new CommunityFragment());
+        mTabContents.add(new FindFragment());
+
+        recommendTabLayoutAdapter = new RecommendTabLayoutAdapter(getSupportFragmentManager(), mTabContents, mDatas);
         mViewPager.setAdapter(recommendTabLayoutAdapter);
         mViewPager.setOffscreenPageLimit(3);
 
-        for (int i = 0; i < mDatas.length; i++) {
-            mIconSelectIds[i] = R.drawable.heart_love;
-            mIconUnselectIds[i] = R.drawable.heart_love;
-            mTabEntities.add(new TabEntity(mDatas[i], mIconSelectIds[i], mIconUnselectIds[i]));
-        }
-
-        for (int i = 0; i < mDatas.length; i++) {
-            mTabContents.add(new RecommendFragment());
-            mTabContents.add(new CommunityFragment());
-            mTabContents.add(new FindFragment());
-        }
-
         recommendTabLayoutAdapter.notifyDataSetChanged();
-        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
-            @Override
-            public int getCount() {
-                return mTabContents.size();
-            }
 
-            @Override
-            public Fragment getItem(int position) {
-                return mTabContents.get(position);
-            }
-        };
+        tabLayout.setViewPager(mViewPager);
+        tabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
     }
 
 
     public void configViews() {
         mPresenter.attachView(this);
-
-        setSupportActionBar(mToolbar);
-        tabLayout.setTabData(mTabEntities);
-        // set vị trí Viewpager khi click vào tabLayout
-        tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelect(int position) {
-                mViewPager.setCurrentItem(position);
-            }
-
-            @Override
-            public void onTabReselect(int position) {
-                if (position == 0) {
-                }
-            }
-        });
-
 
         tabLayout.postDelayed(new Runnable() {
             @Override
@@ -335,55 +276,21 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
     @Override
     public void onLogin(ImageView view, String type) {
         if (type.equals("Login")) {
-//            if (!mTencent.isSessionValid()) {
-//                if (loginListener == null) loginListener = new BaseUIListener();
-//                mTencent.login(this, "all", loginListener);
-//            }
+
         }
         //4f45e920ff5d1a0e29d997986cd97181
     }
 
     @Override
     public void showError() {
-        ToastUtils.showSingleToast("同步异常");
+        ToastUtils.showSingleToast("Lỗi đồng bộ hóa");
         dismissDialog();
     }
 
     @Override
     public void complete() {
-
     }
 
-
-//    public class BaseUIListener implements IUiListener {
-//
-//        @Override
-//        public void onComplete(Object o) {
-//            JSONObject jsonObject = (JSONObject) o;
-//            String json = jsonObject.toString();
-//            Gson gson = new Gson();
-//            TencentLoginResult result = gson.fromJson(json, TencentLoginResult.class);
-//            LogUtils.e(result.toString());
-//            mPresenter.login(result.openid, result.access_token, "QQ");
-//        }
-//
-//        @Override
-//        public void onError(UiError uiError) {
-//        }
-//
-//        @Override
-//        public void onCancel() {
-//
-//        }
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == Constants.REQUEST_LOGIN || requestCode == Constants.REQUEST_APPBAR) {
-//            Tencent.onActivityResultData(requestCode, resultCode, data, loginListener);
-//        }
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
 
     @Override
     protected void onDestroy() {

@@ -1,6 +1,5 @@
 package com.gtv.hanhee.novelreading.Ui.Contract;
 
-import com.gtv.hanhee.novelreading.Model.BookSource;
 import com.gtv.hanhee.novelreading.Model.BookMixAToc;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
 

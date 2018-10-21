@@ -97,7 +97,6 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
 
     @Override
     public void configViews() {
-        setSupportActionBar(mToolbar);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -124,7 +123,6 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
             @Override
             public void onTagClick(String tag) {
                 searchView.onActionViewExpanded();
-
                 searchView.setQuery(hotWords.get(translateHotWords.indexOf(tag)), true);
             }
         });

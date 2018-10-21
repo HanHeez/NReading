@@ -60,7 +60,7 @@ public class SettingManager {
      * @param percent 亮度比例 0~100
      */
     public void saveReadBrightness(int percent) {
-        if(percent > 100){
+        if (percent > 100) {
             ToastUtils.showToast("saveReadBrightnessErr CheckRefs");
             percent = 100;
         }
