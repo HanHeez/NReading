@@ -5,4 +5,63 @@
         <item>Cộng đồng</item>
         <item>Khám phá</item>
     </string-array>
+    <string-array name="recommend_item_long_click_choice_local">
+        <item>Đầu</item>
+        <item>Xóa</item>
+        <item>Quản lý</item>
+    </string-array>
+    <string-array name="recommend_item_long_click_choice">
+                
+        <item>Đầu</item>                
+        <item>Chi tiết Sách</item>                
+        <item>di chuyển vào khu vực vỗ béo</item>                
+        <item>bộ nhớ cache đầy đủ</item>                
+        <item>xóa</item>                
+        <item>quản lý hàng loạt</item>            
+   </string-array>        
+    <string-array name="sub_tabs">                
+        <item>sách mới</item>                
+        <item>Đầu</item>                
+        <item>Truyền miệng</item>                
+        <item>kết thúc</item>            
+   </string-array>
+        
+    <string-array name="sub_rank_tabs">                
+        <item>danh sách tuần</item>                
+        <item>danh sách tháng</item>                
+        <item>tổng số danh sách</item>            
+   </string-array>
+        
+    <string-array name="subject_tabs">                
+        <item>nóng nhất tuần này</item>                
+        <item>bản phát hành mới nhất</item>                
+        <item>Bộ sưu tập tối đa</item>            
+   </string-array>
+        
+    <string-array name="bookdetail_community_tabs">                
+        <item>thảo luận</item>                
+        <item>Phê bình sách</item>            
+   </string-array>
+        
+    <string-array name="recommend_item_long_click_choice_recommend">                
+        <item>Chi tiết Sách</item>                
+        <item>xóa</item>                
+        <item>bộ nhớ cache đầy đủ</item>            
+   </string-array>
+        
+    <string-array name="my_book_list_item_long_click_choice">                
+        <item>xóa</item>            
+   </string-array>
+
+        
+    <string-array name="setting_dialog_sort_choice">                
+        <item>theo thời gian cập nhật</item>                
+        <item>Đọc bởi</item>            
+   </string-array>
+        
+    <string-array name="setting_dialog_style_choice">                
+        <item>mô phỏng hiệu ứng xoay sách</item>                
+        <item>Hiệu ứng chuyển trang bìa trượt</item>                
+        <item>không có hiệu lực</item>            
+   </string-array>
 </resources>

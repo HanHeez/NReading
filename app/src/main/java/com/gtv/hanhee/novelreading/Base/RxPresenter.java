@@ -1,7 +1,5 @@
 package com.gtv.hanhee.novelreading.Base;
 
-import com.gtv.hanhee.novelreading.Ui.Contract.BaseContract;
-
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 

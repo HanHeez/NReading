@@ -1,5 +1,6 @@
 package com.gtv.hanhee.novelreading.Utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -14,6 +15,7 @@ import java.security.MessageDigest;
 public class GlideCircleTransform extends BitmapTransformation {
     private static final String ID = "com.gtv.hanhee.novelreading.Utils.GlideCircleTransform";
     private static final byte[] ID_BYTES = ID.getBytes(Charset.forName("UTF-8"));
+
 
     private static Bitmap circleCrop(BitmapPool pool, Bitmap source) {
         if (source == null) return null;

@@ -13,6 +13,7 @@ import com.gtv.hanhee.novelreading.Model.BooksByTag;
 import com.gtv.hanhee.novelreading.Model.CategoryList;
 import com.gtv.hanhee.novelreading.Model.CategoryListLv2;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
+import com.gtv.hanhee.novelreading.Model.DiscussionList;
 import com.gtv.hanhee.novelreading.Model.HotReview;
 import com.gtv.hanhee.novelreading.Model.HotWord;
 import com.gtv.hanhee.novelreading.Model.Login;
@@ -206,26 +207,26 @@ public interface BookApiService {
     @POST("/user/login")
     Observable<Login> login(@Body LoginReq loginReq);
 //
-//    /**
-//     * 获取综合讨论区帖子列表
-//     * 全部、默认排序  http://api.zhuishushenqi.com/post/by-block?block=ramble&duration=all&sort=updated&type=all&start=0&limit=20&distillate=
-//     * 精品、默认排序  http://api.zhuishushenqi.com/post/by-block?block=ramble&duration=all&sort=updated&type=all&start=0&limit=20&distillate=true
-//     *
-//     * @param block      ramble:综合讨论区
-//     *                   original：原创区
-//     * @param duration   all
-//     * @param sort       updated(默认排序)
-//     *                   created(最新发布)
-//     *                   comment-count(最多评论)
-//     * @param type       all
-//     * @param start      0
-//     * @param limit      20
-//     * @param distillate true(精品)
-//     * @return
-//     */
-//    @GET("/post/by-block")
-//    Observable<DiscussionList> getBookDisscussionList(@Query("block") String block, @Query("duration") String duration, @Query("sort") String sort, @Query("type") String type, @Query("start") String start, @Query("limit") String limit, @Query("distillate") String distillate);
-//
+    /**
+     * Nhận danh sách các bài đăng trên diễn đàn thảo luận
+     * Lấy tất cả、sắp xếp mặc định  http://api.zhuishushenqi.com/post/by-block?block=ramble&duration=all&sort=updated&type=all&start=0&limit=20&distillate=
+     * Lấy theo mục, sắp xếp mặc định  http://api.zhuishushenqi.com/post/by-block?block=ramble&duration=all&sort=updated&type=all&start=0&limit=20&distillate=true
+     *
+     * @param block      ramble:Khu vực thảo luận
+     *                   original：khu vực gốc
+     * @param duration   all
+     * @param sort       updated(mặc định sắp xếp)
+     *                   created(theo ngày tạo)
+     *                   comment-count(theo số lượng bình luận)
+     * @param type       all
+     * @param start      0
+     * @param limit      20
+     * @param distillate true
+     * @return
+     */
+    @GET("/post/by-block")
+    Observable<DiscussionList> getBookDisscussionList(@Query("block") String block, @Query("duration") String duration, @Query("sort") String sort, @Query("type") String type, @Query("start") String start, @Query("limit") String limit, @Query("distillate") String distillate);
+
 //    /**
 //     * 获取综合讨论区帖子详情
 //     *

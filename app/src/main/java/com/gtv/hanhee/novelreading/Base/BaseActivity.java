@@ -31,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected View statusBarView = null;
     Unbinder unbinder;
     private boolean mNowMode;
-    private CustomDialog dialog;//进度条
+    private CustomDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void transparent19and20() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
                 && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            //透明状态栏
+            //Thanh trạng thái trong suốt
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
@@ -99,9 +99,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public abstract void initDatas();
 
-    /**
-     * 对各种控件进行设置、适配、填充数据
-     */
+
     public abstract void configViews();
 
     protected void gone(final View... views) {

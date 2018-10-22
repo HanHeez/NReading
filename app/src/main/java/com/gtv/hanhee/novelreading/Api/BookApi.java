@@ -9,6 +9,7 @@ import com.gtv.hanhee.novelreading.Model.BookMixAToc;
 import com.gtv.hanhee.novelreading.Model.BookSource;
 import com.gtv.hanhee.novelreading.Model.BooksByTag;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
+import com.gtv.hanhee.novelreading.Model.DiscussionList;
 import com.gtv.hanhee.novelreading.Model.HotReview;
 import com.gtv.hanhee.novelreading.Model.HotWord;
 import com.gtv.hanhee.novelreading.Model.Login;
@@ -100,6 +101,10 @@ public class BookApi {
         loginReq.platform_token = platform_token;
         loginReq.platform_uid = platform_uid;
         return service.login(loginReq);
+    }
+
+    public Observable<DiscussionList> getBookDisscussionList(String block, String duration, String sort, String type, String start, String limit, String distillate) {
+        return service.getBookDisscussionList(block, duration, sort, type, start, limit, distillate);
     }
 
 }

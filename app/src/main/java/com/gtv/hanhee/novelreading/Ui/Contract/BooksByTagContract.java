@@ -1,5 +1,6 @@
 package com.gtv.hanhee.novelreading.Ui.Contract;
 
+import com.gtv.hanhee.novelreading.Base.BaseContract;
 import com.gtv.hanhee.novelreading.Model.BooksByTag;
 
 import java.util.List;

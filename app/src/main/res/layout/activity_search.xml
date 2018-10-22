@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/common_bg"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
@@ -26,6 +28,7 @@
             android:layout_alignParentRight="true"
             android:drawableLeft="@drawable/refresh"
             android:drawablePadding="5dp"
+            android:visibility="gone"
             android:text="@string/search_change_a_lot" />
     </RelativeLayout>
 
@@ -35,11 +38,53 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp" />
 
-    <android.support.v7.widget.RecyclerView
+    <RelativeLayout
+        android:id="@+id/rlHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tvSearchHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lịch sử tìm kiếm"
+            android:textColor="@color/common_h1"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tvClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:drawableLeft="@drawable/delete_selector"
+            android:drawablePadding="5dp"
+            android:enabled="true"
+            android:padding="3dp"
+            android:text="Trống"
+            android:textColor="@drawable/delete_text_selector" />
+
+        <ListView
+            android:id="@+id/lvSearchHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvSearchHistory"
+            android:layout_marginTop="5dp"
+            android:divider="@null"
+            android:scrollbars="none"
+            android:listSelector="@drawable/touch_bg" />
+
+    </RelativeLayout>
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foregroundGravity="center"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:layout_empty="@layout/common_empty_view"
+        app:layout_progress="@layout/common_progress_view"
+        app:scrollbarStyle="insideOverlay" />
 
 </LinearLayout>

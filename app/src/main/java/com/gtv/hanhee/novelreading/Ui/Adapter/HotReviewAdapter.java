@@ -36,7 +36,7 @@ public class HotReviewAdapter extends EasyRVAdapter<HotReview.Reviews> {
 
         MultiTransformation multi = new MultiTransformation(
                 new BlurTransformation(25),
-                new RoundedCornersTransformation(128, 0, RoundedCornersTransformation.CornerType.BOTTOM));
+                new RoundedCornersTransformation(128, 0, RoundedCornersTransformation.CornerType.ALL));
         Glide.with(mContext).load(Constant.IMG_BASE_URL + item.author.avatar)
                 .apply(bitmapTransform(multi))
                 .into(ivCover);

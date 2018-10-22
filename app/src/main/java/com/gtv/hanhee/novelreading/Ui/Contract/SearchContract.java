@@ -1,21 +1,18 @@
 package com.gtv.hanhee.novelreading.Ui.Contract;
 
-import com.gtv.hanhee.novelreading.Model.HotWord;
+import com.gtv.hanhee.novelreading.Base.BaseContract;
 import com.gtv.hanhee.novelreading.Model.SearchDetail;
 
 import java.util.List;
 
 public interface SearchContract {
 
-    interface View {
-
-        void showHotWordList(List<HotWord.combineHotWord> combineHotWords, int size);
+    interface View extends BaseContract.BaseView {
+        void showHotWordList(List<String> list);
 
         void showAutoCompleteList(List<String> list);
 
         void showSearchResultList(List<SearchDetail.SearchBooks> list);
-
-
     }
 
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
@@ -25,4 +22,5 @@ public interface SearchContract {
 
         void getSearchResultList(String query);
     }
+
 }

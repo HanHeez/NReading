@@ -87,8 +87,6 @@ public class MainActivityPresenter extends RxPresenter<MainContract.View> implem
         }
         isLastSyncUpdateed = false;
 
-
-
         Observable.mergeDelayError(observables)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -109,11 +107,12 @@ public class MainActivityPresenter extends RxPresenter<MainContract.View> implem
                     public void onError(Throwable e) {
                         LogUtils.e("onError: " + e);
                         mView.showError();
+                        mView.complete();
                     }
 
                     @Override
                     public void onComplete() {
-
+                        mView.complete();
                     }
                 });
 

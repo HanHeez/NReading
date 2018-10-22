@@ -1,5 +1,6 @@
 package com.gtv.hanhee.novelreading.Ui.Contract;
 
+import com.gtv.hanhee.novelreading.Base.BaseContract;
 import com.gtv.hanhee.novelreading.Model.BookDetail;
 import com.gtv.hanhee.novelreading.Model.HotReview;
 import com.gtv.hanhee.novelreading.Model.RecommendBookList;

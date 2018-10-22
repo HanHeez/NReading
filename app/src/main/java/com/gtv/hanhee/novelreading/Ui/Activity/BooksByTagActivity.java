@@ -11,7 +11,8 @@ import android.view.View;
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Common.OnRvItemClickListener;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
-import com.gtv.hanhee.novelreading.Component.DaggerBooksByTagActivityComponent;
+import com.gtv.hanhee.novelreading.Component.DaggerBookComponent;
+
 import com.gtv.hanhee.novelreading.Model.BooksByTag;
 import com.gtv.hanhee.novelreading.R;
 import com.gtv.hanhee.novelreading.Ui.Adapter.BooksByTagAdapter;
@@ -51,7 +52,7 @@ public class BooksByTagActivity extends BaseActivity implements BooksByTagContra
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
-        DaggerBooksByTagActivityComponent.builder()
+        DaggerBookComponent.builder()
                 .appComponent(appComponent)
                 .build()
                 .inject(this);

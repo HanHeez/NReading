@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.gtv.hanhee.novelreading.Component.AppComponent;
 import com.gtv.hanhee.novelreading.ReaderApplication;
+import com.gtv.hanhee.novelreading.Ui.CustomView.CustomDialog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,20 +22,25 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
 
-    public Context mContext;
     protected View parentView;
     protected FragmentActivity activity;
     protected LayoutInflater inflater;
+
     Unbinder unbinder;
+
+    protected Context mContext;
+
+    private CustomDialog dialog;
 
     public abstract
     @LayoutRes
     int getLayoutResId();
 
+    protected abstract void setupActivityComponent(AppComponent appComponent);
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         parentView = inflater.inflate(getLayoutResId(), container, false);
-        unbinder = ButterKnife.bind(this, parentView);
         activity = getSupportActivity();
         mContext = activity;
         this.inflater = inflater;
@@ -45,10 +51,14 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        unbinder = ButterKnife.bind(this, view);
         setupActivityComponent(ReaderApplication.getsInstance().getAppComponent());
+        attachView();
         initDatas();
         configViews();
     }
+
+    public abstract void attachView();
 
     public abstract void initDatas();
 
@@ -60,7 +70,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        this.activity = (AppCompatActivity) activity;
+        this.activity = (FragmentActivity) activity;
     }
 
     @Override
@@ -75,8 +85,8 @@ public abstract class BaseFragment extends Fragment {
         unbinder.unbind();
     }
 
-    public AppCompatActivity getSupportActivity() {
-        return (AppCompatActivity) super.getActivity();
+    public FragmentActivity getSupportActivity() {
+        return super.getActivity();
     }
 
     public Context getApplicationContext() {
@@ -88,5 +98,54 @@ public abstract class BaseFragment extends Fragment {
         return parentView;
     }
 
-    protected abstract void setupActivityComponent(AppComponent appComponent);
+    public CustomDialog getDialog() {
+        if (dialog == null) {
+            dialog = CustomDialog.instance(getActivity());
+            dialog.setCancelable(false);
+        }
+        return dialog;
+    }
+
+    public void hideDialog() {
+        if (dialog != null)
+            dialog.hide();
+    }
+
+    public void showDialog() {
+        getDialog().show();
+    }
+
+    public void dismissDialog() {
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
+    }
+
+    protected void gone(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    protected void visible(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
+    }
+
+    protected boolean isVisible(View view) {
+        return view.getVisibility() == View.VISIBLE;
+    }
+
+
 }

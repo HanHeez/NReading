@@ -1,4 +1,4 @@
-package com.gtv.hanhee.novelreading.Ui.Contract;
+package com.gtv.hanhee.novelreading.Base;
 
 public interface BaseContract {
 

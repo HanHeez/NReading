@@ -8,7 +8,8 @@ import android.widget.RelativeLayout;
 
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
-import com.gtv.hanhee.novelreading.Component.DaggerBookReadActivityComponent;
+import com.gtv.hanhee.novelreading.Component.DaggerBookComponent;
+
 import com.gtv.hanhee.novelreading.Model.BookMixAToc;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
 import com.gtv.hanhee.novelreading.Model.Recommend;
@@ -26,7 +27,7 @@ import butterknife.BindView;
 /**
  * Created by lfh on 2016/9/18.
  */
-public class BookReadActivity extends BaseActivity implements BookReadContract.View {
+public class ReadActivity extends BaseActivity implements BookReadContract.View {
 
     /**
      * 朗读 播放器
@@ -132,7 +133,7 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
     }
 
     public static void startActivity(Context context, Recommend.RecommendBooks recommendBooks, boolean isFromSD) {
-        context.startActivity(new Intent(context, BookReadActivity.class)
+        context.startActivity(new Intent(context, ReadActivity.class)
                 .putExtra(INTENT_BEAN, recommendBooks) //put vào dữ liệu truyện đề cử
                 .putExtra(INTENT_SD, isFromSD));
     }
@@ -148,7 +149,7 @@ public class BookReadActivity extends BaseActivity implements BookReadContract.V
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
-        DaggerBookReadActivityComponent.builder()
+        DaggerBookComponent.builder()
                 .appComponent(appComponent)
                 .build()
                 .inject(this);

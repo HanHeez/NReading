@@ -82,17 +82,28 @@
 
 
     <!-- Trang chủ -->        
-    <string name="exit_tips"> Nhấn lại để thoát chương trình</string>        
-    <string name="remove_selected_book"> Xóa sách đã chọn</string>        
-    <string name="delete_local_cache"> Xóa bộ nhớ cache cục bộ</string>        
-    <string name="confirm"> Đồng ý</string>        
-    <string name="cancel"> Hủy</string>        
-    <string name="cancel_selected_all"> Hủy tất cả lựa chọn</string>        
-    <string name="selected_all"> Chọn tất cả</string>        
-    <string name="has_not_selected_delete_book"> Bạn chưa chọn sách để xóa</string>        
-    <string name="add_the_book_you_like"> Thêm tiểu thuyết yêu thích của bạn</string>        
-    <string name="network_error_tips"> Tải không thành công, vui lòng kiểm tra mạng hoặc thử lại sau</string>        
-    <string name="cancle_top"> Bỏ ghim</string>        
+    <string name="exit_tips"> Nhấn lại để thoát chương trình</string>
+        
+    <string name="remove_selected_book"> Xóa sách đã chọn</string>
+        
+    <string name="delete_local_cache"> Xóa bộ nhớ cache cục bộ</string>
+        
+    <string name="confirm"> Đồng ý</string>
+        
+    <string name="cancel"> Hủy</string>
+        
+    <string name="cancel_selected_all"> Hủy tất cả lựa chọn</string>
+        
+    <string name="selected_all"> Chọn tất cả</string>
+        
+    <string name="has_not_selected_delete_book"> Bạn chưa chọn sách để xóa</string>
+        
+    <string name="add_the_book_you_like"> Thêm truyện yêu thích</string>
+        
+    <string name="network_error_tips"> Tải không thành công, vui lòng kiểm tra mạng hoặc thử lại sau</string>
+        
+    <string name="cancle_top"> Bỏ ghim</string>
+        
     <string name="to_add"> Thêm</string>
 
 </resources>

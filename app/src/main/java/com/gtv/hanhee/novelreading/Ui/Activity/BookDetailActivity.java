@@ -1,5 +1,6 @@
 package com.gtv.hanhee.novelreading.Ui.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +15,8 @@ import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Base.Constant;
 import com.gtv.hanhee.novelreading.Common.OnRvItemClickListener;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
-import com.gtv.hanhee.novelreading.Component.DaggerBookDetailActivityComponent;
+import com.gtv.hanhee.novelreading.Component.DaggerBookComponent;
+
 import com.gtv.hanhee.novelreading.Model.BookDetail;
 import com.gtv.hanhee.novelreading.Model.HotReview;
 import com.gtv.hanhee.novelreading.Model.RecommendBookList;
@@ -93,6 +95,13 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
     private List<RecommendBookList.RecommendBook> mRecommendBookList = new ArrayList<>();
     private String bookId;
 
+    public static String INTENT_BOOK_ID = "bookId";
+
+    public static void startActivity(Context context, String bookId) {
+        context.startActivity(new Intent(context, BookDetailActivity.class)
+                .putExtra(INTENT_BOOK_ID, bookId));
+    }
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_book_detail;
@@ -100,7 +109,7 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
-        DaggerBookDetailActivityComponent.builder()
+        DaggerBookComponent.builder()
                 .appComponent(appComponent)
                 //.mainActivityModule(new MainActivityModule(this))
                 .build()
@@ -246,7 +255,7 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
 
     @OnClick(R.id.btnRead)
     public void onClickRead() {
-        startActivity(new Intent(this, BookReadActivity.class)
+        startActivity(new Intent(this, ReadActivity.class)
                 .putExtra("bookId", bookId));
     }
 }

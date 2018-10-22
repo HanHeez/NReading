@@ -18,7 +18,8 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.gtv.hanhee.novelreading.Base.BaseActivity;
 import com.gtv.hanhee.novelreading.Base.Constant;
 import com.gtv.hanhee.novelreading.Component.AppComponent;
-import com.gtv.hanhee.novelreading.Component.DaggerMainActivityComponent;
+
+import com.gtv.hanhee.novelreading.Component.DaggerMainComponent;
 import com.gtv.hanhee.novelreading.Manager.EventManager;
 import com.gtv.hanhee.novelreading.Manager.SettingManager;
 import com.gtv.hanhee.novelreading.R;
@@ -70,7 +71,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
-        DaggerMainActivityComponent.builder()
+        DaggerMainComponent.builder()
                 .appComponent(appComponent)
                 .build()
                 .inject(this);
@@ -289,6 +290,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
 
     @Override
     public void complete() {
+
     }
 
 

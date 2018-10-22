@@ -9,9 +9,10 @@ import java.util.List;
 public class Recommend extends Base {
 
 
+
     public List<RecommendBooks> books;
 
-    public class RecommendBooks implements Serializable {
+    public static class RecommendBooks implements Serializable {
 
         /**
          * _id : 526e8e3e7cfc087140004df7
@@ -37,13 +38,27 @@ public class Recommend extends Base {
         public boolean isSeleted = false;
         public boolean showCheckBox = false;
         public boolean isFromSD = false;
+        public String path = "";
         public int latelyFollower;
         public double retentionRatio;
-        public String updated;
+        public String updated = "";
         public int chaptersCount;
         public String lastChapter;
         public String recentReadingTime = "";
-        public String path = "";
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof RecommendBooks) {
+                RecommendBooks bean = (RecommendBooks) obj;
+                return this._id.equals(bean._id);
+            }
+            return super.equals(obj);
+        }
+
+        @Override
+        public int hashCode() {
+            return this._id.hashCode();
+        }
 
         public String get_id() {
             return _id;
@@ -93,6 +108,46 @@ public class Recommend extends Base {
             this.hasCp = hasCp;
         }
 
+        public boolean isTop() {
+            return isTop;
+        }
+
+        public void setTop(boolean top) {
+            isTop = top;
+        }
+
+        public boolean isSeleted() {
+            return isSeleted;
+        }
+
+        public void setSeleted(boolean seleted) {
+            isSeleted = seleted;
+        }
+
+        public boolean isShowCheckBox() {
+            return showCheckBox;
+        }
+
+        public void setShowCheckBox(boolean showCheckBox) {
+            this.showCheckBox = showCheckBox;
+        }
+
+        public boolean isFromSD() {
+            return isFromSD;
+        }
+
+        public void setFromSD(boolean fromSD) {
+            isFromSD = fromSD;
+        }
+
+        public String getPath() {
+            return path;
+        }
+
+        public void setPath(String path) {
+            this.path = path;
+        }
+
         public int getLatelyFollower() {
             return latelyFollower;
         }
@@ -133,18 +188,12 @@ public class Recommend extends Base {
             this.lastChapter = lastChapter;
         }
 
-        @Override
-        public boolean equals(Object obj) {
-            if (obj instanceof RecommendBooks) {
-                RecommendBooks bean = (RecommendBooks) obj;
-                return this._id.equals(bean._id);
-            }
-            return super.equals(obj);
+        public String getRecentReadingTime() {
+            return recentReadingTime;
         }
 
-        @Override
-        public int hashCode() {
-            return this._id.hashCode();
+        public void setRecentReadingTime(String recentReadingTime) {
+            this.recentReadingTime = recentReadingTime;
         }
     }
 

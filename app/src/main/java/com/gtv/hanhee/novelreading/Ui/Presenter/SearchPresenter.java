@@ -5,171 +5,129 @@ import android.content.Context;
 
 import com.gtv.hanhee.novelreading.Api.BookApi;
 import com.gtv.hanhee.novelreading.Api.VietPhraseApi;
+import com.gtv.hanhee.novelreading.Base.RxPresenter;
 import com.gtv.hanhee.novelreading.Model.AutoComplete;
 import com.gtv.hanhee.novelreading.Model.HotWord;
 import com.gtv.hanhee.novelreading.Model.SearchDetail;
 import com.gtv.hanhee.novelreading.Ui.Contract.SearchContract;
+import com.gtv.hanhee.novelreading.Utils.LogUtils;
+import com.gtv.hanhee.novelreading.Utils.RxUtil;
+import com.gtv.hanhee.novelreading.Utils.StringUtils;
+
+import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class SearchPresenter implements SearchContract.Presenter<SearchContract.View> {
+public class SearchPresenter extends RxPresenter<SearchContract.View> implements SearchContract.Presenter<SearchContract.View> {
 
-    private static final String TAG = "SearchPresenter";
-    List<String> hotWords = new ArrayList<>();
-    List<SearchDetail.SearchBooks> listSearchDetail = new ArrayList<>();
-    List<HotWord.combineHotWord> combineHotWords = new ArrayList<>();
-    private Context context;
     private BookApi bookApi;
-    private VietPhraseApi vietPhraseApi;
-    private SearchContract.View view;
 
     @Inject
-    public SearchPresenter(Context context, BookApi bookApi, VietPhraseApi vietPhraseApi) {
-        this.context = context;
+    public SearchPresenter(BookApi bookApi) {
         this.bookApi = bookApi;
-        this.vietPhraseApi = vietPhraseApi;
     }
 
-    @Override
-    public void attachView(SearchContract.View view) {
-        this.view = view;
-    }
-
-    @Override
-    public void detachView() {
-
-    }
-
-    @SuppressLint("CheckResult")
     public void getHotWordList() {
+        String key = StringUtils.creatAcacheKey("hot-word-list");
+        Observable<HotWord> fromNetWork = bookApi.getHotWord()
+                .compose(RxUtil.<HotWord>rxCacheListHelper(key));
 
-        bookApi.getHotWord().subscribeOn(Schedulers.io())
+        //依次检查disk、network
+        Observable.concat(RxUtil.rxCreateDiskObservable(key, HotWord.class), fromNetWork)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::resultHotWord, this::Error);
-        ;
+                .subscribe(new Observer<HotWord>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(HotWord hotWord) {
+                        List<String> list = hotWord.hotWords;
+                        if (list != null && !list.isEmpty() && mView != null) {
+                            mView.showHotWordList(list);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtils.e("onError: " + e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
-    private void resultHotWord(HotWord hotWord) {
-        hotWords = hotWord.hotWords;
-        if (hotWords != null && !hotWords.isEmpty() && view != null) {
-            translateHotWords();
-        }
-    }
-
-    @SuppressLint("CheckResult")
-    private void translateHotWords() {
-        for (int i = 0; i < hotWords.size(); i++) {
-            int finalI = i;
-            vietPhraseApi.getTranslateText(hotWords.get(i))
-                    .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                    .subscribe(transText -> resultTransHotWord(transText, hotWords.get(finalI)), this::Error);
-        }
-    }
-
-    private void resultTransHotWord(String transText, String beforeText) {
-        HotWord.combineHotWord combineHotWord = new HotWord.combineHotWord(transText, beforeText);
-        combineHotWords.add(combineHotWord);
-        view.showHotWordList(combineHotWords, hotWords.size());
-    }
-
-
-    @SuppressLint("CheckResult")
     @Override
     public void getAutoCompleteList(String query) {
         bookApi.getAutoComplete(query).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::ResultAutoCompleteList, this::Error);
+                .subscribe(new Observer<AutoComplete>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(AutoComplete autoComplete) {
+                        LogUtils.e("getAutoCompleteList" + autoComplete.keywords);
+                        List<String> list = autoComplete.keywords;
+                        if (list != null && !list.isEmpty() && mView != null) {
+                            mView.showAutoCompleteList(list);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtils.e(e.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
-    private void ResultAutoCompleteList(AutoComplete autoComplete) {
-        List<String> list = autoComplete.keywords;
-        if (list != null && !list.isEmpty() && view != null) {
-            view.showAutoCompleteList(list);
-        }
-    }
-
-    @SuppressLint("CheckResult")
     @Override
     public void getSearchResultList(String query) {
         bookApi.getSearchResult(query).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::resultSearchResultList, this::Error);
-    }
+                .subscribe(new Observer<SearchDetail>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-    private void resultSearchResultList(SearchDetail searchDetail) {
-        listSearchDetail = searchDetail.books;
-        if (listSearchDetail != null && !listSearchDetail.isEmpty() && view != null) {
-            translateSearchResultList();
+                    }
 
-        }
-    }
+                    @Override
+                    public void onNext(SearchDetail bean) {
+                        List<SearchDetail.SearchBooks> list = bean.books;
+                        if (list != null && !list.isEmpty() && mView != null) {
+                            mView.showSearchResultList(list);
+                        }
+                    }
 
-    @SuppressLint("CheckResult")
-    private void translateSearchResultList() {
-        for (int i = 0; i < listSearchDetail.size(); i++) {
-            int finalI = i;
-            vietPhraseApi.getTranslateText(listSearchDetail.get(i).getTitle())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                    .subscribe(transText -> resultTransTitleSearchList(transText, finalI), this::Error);
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtils.e(e.toString());
+                    }
 
-            vietPhraseApi.getTranslateText(listSearchDetail.get(i).getAuthor())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                    .subscribe(transText -> resultTransAuthorSearchList(transText, finalI), this::Error);
+                    @Override
+                    public void onComplete() {
 
-            vietPhraseApi.getTranslateText(listSearchDetail.get(i).getCat())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                    .subscribe(transText -> resultTransCategorySearchList(transText, finalI), this::Error);
-
-            vietPhraseApi.getTranslateText(listSearchDetail.get(i).getTitle())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                    .subscribe(transText -> resultTransTitleSearchList(transText, finalI), this::Error);
-
-
-            vietPhraseApi.getTranslateText(listSearchDetail.get(i).getShortIntro())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                    .subscribe(transText -> resultTransShortIntroSearchList(transText, finalI), this::Error);
-
-
-            vietPhraseApi.getTranslateText(listSearchDetail.get(i).getLastChapter())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
-                    .subscribe(transText -> resultTransLastChapterSearchList(transText, finalI), this::Error);
-        }
-    }
-
-    private void resultTransLastChapterSearchList(String transText, int finalI) {
-        listSearchDetail.get(finalI).setLastChapterTrans(transText);
-        view.showSearchResultList(listSearchDetail);
-    }
-
-
-    private void resultTransShortIntroSearchList(String transText, int finalI) {
-        listSearchDetail.get(finalI).setLastChapterTrans(transText);
-        view.showSearchResultList(listSearchDetail);
-
-    }
-
-    private void resultTransCategorySearchList(String transText, int finalI) {
-        listSearchDetail.get(finalI).setCatTrans(transText);
-        view.showSearchResultList(listSearchDetail);
-    }
-
-    private void resultTransAuthorSearchList(String transText, int finalI) {
-        listSearchDetail.get(finalI).setAuthorTrans(transText);
-        view.showSearchResultList(listSearchDetail);
-    }
-
-    private void resultTransTitleSearchList(String transText, int finalI) {
-        listSearchDetail.get(finalI).setTitleTrans(transText);
-        view.showSearchResultList(listSearchDetail);
-
-    }
-
-    private void Error(Throwable throwable) {
+                    }
+                });
     }
 }

@@ -7,7 +7,7 @@ import com.gtv.hanhee.novelreading.Model.Support.SubEvent;
 import org.greenrobot.eventbus.EventBus;
 
 public class EventManager {
-    // Chưa thiết kế
+
     public static void refreshCollectionList() {
         EventBus.getDefault().post(new RefreshCollectionListEvent());
     }
