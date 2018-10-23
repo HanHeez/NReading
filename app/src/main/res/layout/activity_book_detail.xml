@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_bg"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include layout="@layout/common_toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="15dp">
@@ -28,10 +30,11 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="10dp"
                     android:contentDescription="@null"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cover_default" />
 
                 <TextView
-                    android:id="@+id/tvBookTitle"
+                    android:id="@+id/tvBookListTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -39,55 +42,58 @@
                     android:layout_toRightOf="@+id/ivBookCover"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="Tu chân thế giới"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/common_h1"
+                    android:textSize="16sp"
+                    tools:text="武侠世界自由行" />
 
                 <TextView
-                    android:id="@+id/tvAuthor"
+                    android:id="@+id/tvBookListAuthor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvBookTitle"
+                    android:layout_below="@id/tvBookListTitle"
                     android:layout_toRightOf="@+id/ivBookCover"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="HanHee | "
                     android:textColor="@color/orange"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    tools:text="w风雪 | " />
 
                 <TextView
                     android:id="@+id/tvCatgory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvBookTitle"
-                    android:layout_toRightOf="@id/tvAuthor"
+                    android:layout_below="@id/tvBookListTitle"
+                    android:layout_toRightOf="@id/tvBookListAuthor"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="Huyền huyễn | "
-                    android:textSize="13sp" />
+                    android:textColor="@color/common_h2"
+                    android:textSize="13sp"
+                    tools:text="仙侠 | " />
 
                 <TextView
                     android:id="@+id/tvWordCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvBookTitle"
+                    android:layout_below="@id/tvBookListTitle"
                     android:layout_toRightOf="@id/tvCatgory"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="5940k từ"
-                    android:textSize="13sp" />
+                    android:textColor="@color/common_h2"
+                    android:textSize="13sp"
+                    tools:text="594万字" />
 
                 <TextView
                     android:id="@+id/tvLatelyUpdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvAuthor"
+                    android:layout_below="@id/tvBookListAuthor"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/ivBookCover"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="4 tháng trước"
-                    android:textSize="13sp" />
+                    android:textColor="@color/common_h2"
+                    android:textSize="13sp"
+                    tools:text="4月前" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -96,16 +102,17 @@
                     android:layout_marginTop="10dp">
 
                     <com.gtv.hanhee.novelreading.Ui.CustomView.DrawableCenterButton
+                        android:id="@+id/btnJoinCollection"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/shape_common_btn_selector"
+                        android:background="@drawable/shape_common_btn_solid_selector"
                         android:clickable="true"
                         android:drawableLeft="@drawable/book_detail_info_add_img"
                         android:drawablePadding="5dp"
                         android:padding="10dp"
-                        android:text="Theo dõi"
+                        android:text="@string/book_detail_join_collection"
                         android:textColor="@color/white" />
 
                     <com.gtv.hanhee.novelreading.Ui.CustomView.DrawableCenterButton
@@ -113,12 +120,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/shape_common_btn_selector"
+                        android:background="@drawable/shape_common_btn_solid_selector"
                         android:clickable="true"
                         android:drawableLeft="@drawable/book_detail_info_search_img"
                         android:drawablePadding="5dp"
                         android:padding="10dp"
-                        android:text="Đọc truyện"
+                        android:text="开始阅读"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
@@ -128,10 +135,10 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/gray" />
+                android:background="@color/common_divider_narrow" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,7 +158,8 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="Tổng số truyện"
+                        android:text="追书人数"
+                        android:textColor="@color/common_h2"
                         android:textSize="13sp" />
 
                     <TextView
@@ -161,9 +169,9 @@
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="82"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textColor="@color/common_h1"
+                        android:textSize="15sp"
+                        tools:text="82" />
 
                 </LinearLayout>
 
@@ -179,7 +187,8 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="@string/tvRetention_Ratio"
+                        android:text="读者留存率"
+                        android:textColor="@color/common_h2"
                         android:textSize="13sp" />
 
                     <TextView
@@ -189,9 +198,9 @@
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="20.29%"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textColor="@color/common_h1"
+                        android:textSize="15sp"
+                        tools:text="20.29%" />
 
                 </LinearLayout>
 
@@ -207,7 +216,8 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="@string/tvSerialize_Word_Count"
+                        android:text="日更新字数"
+                        android:textColor="@color/common_h2"
                         android:textSize="13sp" />
 
                     <TextView
@@ -217,9 +227,9 @@
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="4614"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textColor="@color/common_h1"
+                        android:textSize="15sp"
+                        tools:text="4614" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -228,7 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_margin="10dp"
-                android:background="@color/gray" />
+                android:background="@color/common_divider_narrow" />
 
             <com.gtv.hanhee.novelreading.Ui.CustomView.TagGroup
                 android:id="@+id/tag_group"
@@ -240,22 +250,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_margin="10dp"
-                android:background="@color/gray" />
+                android:background="@color/common_divider_narrow" />
 
             <TextView
                 android:id="@+id/tvlongIntro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-10dp"
+                android:ellipsize="end"
+                android:maxLines="4"
                 android:padding="15dp"
-                android:text="4614"
-                android:textColor="@color/black"
+                android:textColor="@color/common_h1"
                 android:textSize="15sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/light_white" />
+                android:background="@color/common_divider_wide" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -266,7 +277,7 @@
                     android:layout_height="wrap_content"
                     android:padding="15dp"
                     android:text="@string/book_detail_hot_reviews"
-                    android:textColor="@color/black"
+                    android:textColor="@color/common_h1"
                     android:textSize="15sp" />
 
                 <TextView
@@ -275,7 +286,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:padding="15dp"
-                    android:text="@string/more_review"
+                    android:text="更多"
+                    android:textColor="@color/common_h2"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -288,9 +300,10 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/light_white" />
+                android:background="@color/common_divider_wide" />
 
             <RelativeLayout
+                android:id="@+id/rlCommunity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="15dp">
@@ -300,16 +313,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/book_detail_community"
-                    android:textColor="@color/black"
+                    android:textColor="@color/common_h1"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/tvPostCount"
+                    android:id="@+id/tvHelpfulYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvCommunity"
                     android:layout_marginTop="5dp"
                     android:text="@string/book_detail_post_count"
+                    android:textColor="@color/common_h2"
                     android:textSize="13sp" />
 
                 <ImageView
@@ -323,7 +337,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/light_white" />
+                android:background="@color/common_divider_wide" />
 
             <TextView
                 android:id="@+id/tvRecommendBookList"
@@ -331,7 +345,7 @@
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:text="@string/book_detail_recommend_book_list"
-                android:textColor="@color/black"
+                android:textColor="@color/common_h1"
                 android:textSize="15sp"
                 android:visibility="gone" />
 

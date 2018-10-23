@@ -1,4 +1,4 @@
-package com.gtv.hanhee.novelreading.Ui.Adapter.Holder;
+package com.gtv.hanhee.novelreading.Base;
 
 import android.content.Context;
 import android.graphics.Bitmap;

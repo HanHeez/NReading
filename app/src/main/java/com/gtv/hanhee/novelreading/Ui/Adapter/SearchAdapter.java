@@ -10,11 +10,8 @@ import com.gtv.hanhee.novelreading.Base.Constant;
 
 import com.gtv.hanhee.novelreading.Model.SearchDetail;
 import com.gtv.hanhee.novelreading.R;
-import com.gtv.hanhee.novelreading.Ui.Adapter.Holder.BaseViewHolder;
+import com.gtv.hanhee.novelreading.Base.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
-
-
-import java.util.List;
 
 public class SearchAdapter extends RecyclerArrayAdapter<SearchDetail.SearchBooks> {
 

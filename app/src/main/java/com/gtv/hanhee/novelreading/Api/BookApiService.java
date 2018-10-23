@@ -2,18 +2,24 @@ package com.gtv.hanhee.novelreading.Api;
 
 import com.gtv.hanhee.novelreading.Model.AutoComplete;
 import com.gtv.hanhee.novelreading.Model.BookDetail;
+import com.gtv.hanhee.novelreading.Model.BookHelp;
+import com.gtv.hanhee.novelreading.Model.BookHelpList;
 import com.gtv.hanhee.novelreading.Model.BookListDetail;
 import com.gtv.hanhee.novelreading.Model.BookListTags;
 import com.gtv.hanhee.novelreading.Model.BookLists;
 import com.gtv.hanhee.novelreading.Model.BookMixAToc;
 import com.gtv.hanhee.novelreading.Model.BookRead;
+import com.gtv.hanhee.novelreading.Model.BookReview;
+import com.gtv.hanhee.novelreading.Model.BookReviewList;
 import com.gtv.hanhee.novelreading.Model.BookSource;
 import com.gtv.hanhee.novelreading.Model.BooksByCats;
 import com.gtv.hanhee.novelreading.Model.BooksByTag;
 import com.gtv.hanhee.novelreading.Model.CategoryList;
 import com.gtv.hanhee.novelreading.Model.CategoryListLv2;
 import com.gtv.hanhee.novelreading.Model.ChapterRead;
+import com.gtv.hanhee.novelreading.Model.CommentList;
 import com.gtv.hanhee.novelreading.Model.DiscussionList;
+import com.gtv.hanhee.novelreading.Model.Disscussion;
 import com.gtv.hanhee.novelreading.Model.HotReview;
 import com.gtv.hanhee.novelreading.Model.HotWord;
 import com.gtv.hanhee.novelreading.Model.Login;
@@ -23,6 +29,7 @@ import com.gtv.hanhee.novelreading.Model.Rankings;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.Model.RecommendBookList;
 import com.gtv.hanhee.novelreading.Model.SearchDetail;
+import com.gtv.hanhee.novelreading.Model.User.Following;
 import com.gtv.hanhee.novelreading.Model.User.LoginReq;
 
 import java.util.List;
@@ -227,144 +234,144 @@ public interface BookApiService {
     @GET("/post/by-block")
     Observable<DiscussionList> getBookDisscussionList(@Query("block") String block, @Query("duration") String duration, @Query("sort") String sort, @Query("type") String type, @Query("start") String start, @Query("limit") String limit, @Query("distillate") String distillate);
 
-//    /**
-//     * 获取综合讨论区帖子详情
-//     *
-//     * @param disscussionId->_id
-//     * @return
-//     */
-//    @GET("/post/{disscussionId}")
-//    Observable<Disscussion> getBookDisscussionDetail(@Path("disscussionId") String disscussionId);
-//
-//    /**
-//     * 获取神评论列表(综合讨论区、书评区、书荒区皆为同一接口)
-//     *
-//     * @param disscussionId->_id
-//     * @return
-//     */
-//    @GET("/post/{disscussionId}/comment/best")
-//    Observable<CommentList> getBestComments(@Path("disscussionId") String disscussionId);
-//
-//    /**
-//     * 获取综合讨论区帖子详情内的评论列表
-//     *
-//     * @param disscussionId->_id
-//     * @param start              0
-//     * @param limit              30
-//     * @return
-//     */
-//    @GET("/post/{disscussionId}/comment")
-//    Observable<CommentList> getBookDisscussionComments(@Path("disscussionId") String disscussionId, @Query("start") String start, @Query("limit") String limit);
-//
-//    /**
-//     * 获取书评区帖子列表
-//     * 全部、全部类型、默认排序  http://api.zhuishushenqi.com/post/review?duration=all&sort=updated&type=all&start=0&limit=20&distillate=
-//     * 精品、玄幻奇幻、默认排序  http://api.zhuishushenqi.com/post/review?duration=all&sort=updated&type=xhqh&start=0&limit=20&distillate=true
-//     *
-//     * @param duration   all
-//     * @param sort       updated(默认排序)
-//     *                   created(最新发布)
-//     *                   helpful(最有用的)
-//     *                   comment-count(最多评论)
-//     * @param type       all(全部类型)、xhqh(玄幻奇幻)、dsyn(都市异能)...
-//     * @param start      0
-//     * @param limit      20
-//     * @param distillate true(精品) 、空字符（全部）
-//     * @return
-//     */
-//    @GET("/post/review")
-//    Observable<BookReviewList> getBookReviewList(@Query("duration") String duration, @Query("sort") String sort, @Query("type") String type, @Query("start") String start, @Query("limit") String limit, @Query("distillate") String distillate);
-//
-//    /**
-//     * 获取书评区帖子详情
-//     *
-//     * @param bookReviewId->_id
-//     * @return
-//     */
-//    @GET("/post/review/{bookReviewId}")
-//    Observable<BookReview> getBookReviewDetail(@Path("bookReviewId") String bookReviewId);
-//
-//    /**
-//     * 获取书评区、书荒区帖子详情内的评论列表
-//     *
-//     * @param bookReviewId->_id
-//     * @param start             0
-//     * @param limit             30
-//     * @return
-//     */
-//    @GET("/post/review/{bookReviewId}/comment")
-//    Observable<CommentList> getBookReviewComments(@Path("bookReviewId") String bookReviewId, @Query("start") String start, @Query("limit") String limit);
-//
-//    /**
-//     * 获取书荒区帖子列表
-//     * 全部、默认排序  http://api.zhuishushenqi.com/post/help?duration=all&sort=updated&start=0&limit=20&distillate=
-//     * 精品、默认排序  http://api.zhuishushenqi.com/post/help?duration=all&sort=updated&start=0&limit=20&distillate=true
-//     *
-//     * @param duration   all
-//     * @param sort       updated(默认排序)
-//     *                   created(最新发布)
-//     *                   comment-count(最多评论)
-//     * @param start      0
-//     * @param limit      20
-//     * @param distillate true(精品) 、空字符（全部）
-//     * @return
-//     */
-//    @GET("/post/help")
-//    Observable<BookHelpList> getBookHelpList(@Query("duration") String duration, @Query("sort") String sort, @Query("start") String start, @Query("limit") String limit, @Query("distillate") String distillate);
-//
-//    /**
-//     * 获取书荒区帖子详情
-//     *
-//     * @param helpId->_id
-//     * @return
-//     */
-//    @GET("/post/help/{helpId}")
-//    Observable<BookHelp> getBookHelpDetail(@Path("helpId") String helpId);
-//
-//    /**
-//     * 第三方登陆
-//     *
-//     * @param platform_uid
-//     * @param platform_token
-//     * @param platform_code  “QQ”
-//     * @return
-//     */
-//
+    /**
+     * 获取综合讨论区帖子详情
+     *
+     * @param disscussionId->_id
+     * @return
+     */
+    @GET("/post/{disscussionId}")
+    Observable<Disscussion> getBookDisscussionDetail(@Path("disscussionId") String disscussionId);
 
-//    @GET("/user/followings/{userid}")
-//    Observable<Following> getFollowings(@Path("userid") String userId);
-//
-//    /**
-//     * 获取书籍详情讨论列表
-//     *
-//     * @param book  bookId
-//     * @param sort  updated(默认排序)
-//     *              created(最新发布)
-//     *              comment-count(最多评论)
-//     * @param type  normal
-//     *              vote
-//     * @param start 0
-//     * @param limit 20
-//     * @return
-//     */
-//    @GET("/post/by-book")
-//    Observable<DiscussionList> getBookDetailDisscussionList(@Query("book") String book, @Query("sort") String sort, @Query("type") String type, @Query("start") String start, @Query("limit") String limit);
-//
-//    /**
-//     * 获取书籍详情书评列表
-//     *
-//     * @param book  bookId
-//     * @param sort  updated(默认排序)
-//     *              created(最新发布)
-//     *              helpful(最有用的)
-//     *              comment-count(最多评论)
-//     * @param start 0
-//     * @param limit 20
-//     * @return
-//     */
-//    @GET("/post/review/by-book")
-//    Observable<HotReview> getBookDetailReviewList(@Query("book") String book, @Query("sort") String sort, @Query("start") String start, @Query("limit") String limit);
-//
-//    @GET("/post/original")
-//    Observable<DiscussionList> getBookOriginalList(@Query("block") String block, @Query("duration") String duration, @Query("sort") String sort, @Query("type") String type, @Query("start") String start, @Query("limit") String limit, @Query("distillate") String distillate);
+    /**
+     * 获取神评论列表(综合讨论区、书评区、书荒区皆为同一接口)
+     *
+     * @param disscussionId->_id
+     * @return
+     */
+    @GET("/post/{disscussionId}/comment/best")
+    Observable<CommentList> getBestComments(@Path("disscussionId") String disscussionId);
+
+    /**
+     * 获取综合讨论区帖子详情内的评论列表
+     *
+     * @param disscussionId->_id
+     * @param start              0
+     * @param limit              30
+     * @return
+     */
+    @GET("/post/{disscussionId}/comment")
+    Observable<CommentList> getBookDisscussionComments(@Path("disscussionId") String disscussionId, @Query("start") String start, @Query("limit") String limit);
+
+    /**
+     * 获取书评区帖子列表
+     * 全部、全部类型、默认排序  http://api.zhuishushenqi.com/post/review?duration=all&sort=updated&type=all&start=0&limit=20&distillate=
+     * 精品、玄幻奇幻、默认排序  http://api.zhuishushenqi.com/post/review?duration=all&sort=updated&type=xhqh&start=0&limit=20&distillate=true
+     *
+     * @param duration   all
+     * @param sort       updated(默认排序)
+     *                   created(最新发布)
+     *                   helpful(最有用的)
+     *                   comment-count(最多评论)
+     * @param type       all(全部类型)、xhqh(玄幻奇幻)、dsyn(都市异能)...
+     * @param start      0
+     * @param limit      20
+     * @param distillate true(精品) 、空字符（全部）
+     * @return
+     */
+    @GET("/post/review")
+    Observable<BookReviewList> getBookReviewList(@Query("duration") String duration, @Query("sort") String sort, @Query("type") String type, @Query("start") String start, @Query("limit") String limit, @Query("distillate") String distillate);
+
+    /**
+     * 获取书评区帖子详情
+     *
+     * @param bookReviewId->_id
+     * @return
+     */
+    @GET("/post/review/{bookReviewId}")
+    Observable<BookReview> getBookReviewDetail(@Path("bookReviewId") String bookReviewId);
+
+    /**
+     * 获取书评区、书荒区帖子详情内的评论列表
+     *
+     * @param bookReviewId->_id
+     * @param start             0
+     * @param limit             30
+     * @return
+     */
+    @GET("/post/review/{bookReviewId}/comment")
+    Observable<CommentList> getBookReviewComments(@Path("bookReviewId") String bookReviewId, @Query("start") String start, @Query("limit") String limit);
+
+    /**
+     * 获取书荒区帖子列表
+     * 全部、默认排序  http://api.zhuishushenqi.com/post/help?duration=all&sort=updated&start=0&limit=20&distillate=
+     * 精品、默认排序  http://api.zhuishushenqi.com/post/help?duration=all&sort=updated&start=0&limit=20&distillate=true
+     *
+     * @param duration   all
+     * @param sort       updated(默认排序)
+     *                   created(最新发布)
+     *                   comment-count(最多评论)
+     * @param start      0
+     * @param limit      20
+     * @param distillate true(精品) 、空字符（全部）
+     * @return
+     */
+    @GET("/post/help")
+    Observable<BookHelpList> getBookHelpList(@Query("duration") String duration, @Query("sort") String sort, @Query("start") String start, @Query("limit") String limit, @Query("distillate") String distillate);
+
+    /**
+     * 获取书荒区帖子详情
+     *
+     * @param helpId->_id
+     * @return
+     */
+    @GET("/post/help/{helpId}")
+    Observable<BookHelp> getBookHelpDetail(@Path("helpId") String helpId);
+
+    /**
+     * 第三方登陆
+     *
+     * @param platform_uid
+     * @param platform_token
+     * @param platform_code  “QQ”
+     * @return
+     */
+
+
+    @GET("/user/followings/{userid}")
+    Observable<Following> getFollowings(@Path("userid") String userId);
+
+    /**
+     * 获取书籍详情讨论列表
+     *
+     * @param book  bookId
+     * @param sort  updated(默认排序)
+     *              created(最新发布)
+     *              comment-count(最多评论)
+     * @param type  normal
+     *              vote
+     * @param start 0
+     * @param limit 20
+     * @return
+     */
+    @GET("/post/by-book")
+    Observable<DiscussionList> getBookDetailDisscussionList(@Query("book") String book, @Query("sort") String sort, @Query("type") String type, @Query("start") String start, @Query("limit") String limit);
+
+    /**
+     * 获取书籍详情书评列表
+     *
+     * @param book  bookId
+     * @param sort  updated(默认排序)
+     *              created(最新发布)
+     *              helpful(最有用的)
+     *              comment-count(最多评论)
+     * @param start 0
+     * @param limit 20
+     * @return
+     */
+    @GET("/post/review/by-book")
+    Observable<HotReview> getBookDetailReviewList(@Query("book") String book, @Query("sort") String sort, @Query("start") String start, @Query("limit") String limit);
+
+    @GET("/post/original")
+    Observable<DiscussionList> getBookOriginalList(@Query("block") String block, @Query("duration") String duration, @Query("sort") String sort, @Query("type") String type, @Query("start") String start, @Query("limit") String limit, @Query("distillate") String distillate);
 }

@@ -10,7 +10,7 @@ import com.gtv.hanhee.novelreading.Base.Constant;
 import com.gtv.hanhee.novelreading.Manager.SettingManager;
 import com.gtv.hanhee.novelreading.Model.Recommend;
 import com.gtv.hanhee.novelreading.R;
-import com.gtv.hanhee.novelreading.Ui.Adapter.Holder.BaseViewHolder;
+import com.gtv.hanhee.novelreading.Base.BaseViewHolder;
 import com.gtv.hanhee.novelreading.Utils.FileUtils;
 import com.gtv.hanhee.novelreading.Utils.FormatUtils;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;

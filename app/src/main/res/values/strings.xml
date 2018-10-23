@@ -4,6 +4,7 @@
     <string name="search_hot_search">Từ khóa hay tìm kiếm</string>
     <string name="search_change_a_lot">Làm mới</string>
 
+    <string name="empty"></string>
     <string name="add_tag">Add Tag</string>
     <string name="book_detail">Chi tiết</string>
 
@@ -16,10 +17,18 @@
     <string name="book_detail_user_lv">&#160;lv.%1$d</string>
     <string name="book_detail_hot_reviews">Đánh giá phổ biển</string>
     <string name="book_detail_community">%1$s cộng đồng</string>
+    <string name="book_detail_retention_ratio">%1$s%%</string>
     <string name="book_detail_post_count">Có %1$d bài đăng</string>
     <string name="book_detail_recommend_book_list">Đề xuất</string>
     <string name="book_detail_recommend_book_list_book_count">Có %1$d truyện |&#160;</string>
     <string name="book_detail_recommend_book_list_collector_count">%1$d bộ sưu tập</string>
+    <string name="book_detail_remove_collection">Hủy theo dõi</string>
+    <string name="book_detail_join_collection">Theo dõi</string>
+    <string name="book_detail_is_joined_the_book_shelf">Truyện 《%1$s》 được thêm vào giá sách</string>
+    <string name="book_detail_has_joined_the_book_shelf">Thêm thành công 《%1$s》vào giá sách</string>
+    <string name="book_detail_has_remove_the_book_shelf">Đã xóa 《%1$s》 khỏi giá sách</string>
+
+
     <string name="book_read_reading">Phóng to</string>
     <string name="book_read_community">Cộng đồng</string>
     <string name="book_read_mode">Chế độ đọc</string>
@@ -30,6 +39,8 @@
     <string name="more_review">Xem thêm</string>
     <string name="tvSerialize_Word_Count">Số từ cập nhật hàng ngày</string>
     <string name="tvRetention_Ratio">tỉ lệ người đọc</string>
+
+
 
     <!--Đoc trang liên quan -->
     <string name="book_read_change_source">Nguồn</string>
@@ -105,5 +116,12 @@
     <string name="cancle_top"> Bỏ ghim</string>
         
     <string name="to_add"> Thêm</string>
+
+    <!--Chủ đề-->
+    <string name="subject_book_list">Danh sách chủ đề</string>
+    <string name="subject_book_list_my_book_list">Danh sách truyện</string>
+    <string name="subject_book_list_detail">Chi tiết</string>
+    <string name="subject_book_list_detail_book_lately_follower">%1$d&#160; theo dõi</string>
+    <string name="subject_book_list_detail_book_word_count">|&#160;%1$d&#160; từ</string>
 
 </resources>

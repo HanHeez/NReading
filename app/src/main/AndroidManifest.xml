@@ -55,7 +55,8 @@
         <activity android:name=".Ui.Activity.BookReviewActivity" />
         <activity android:name=".Ui.Activity.BookHelpActivity" />
         <activity android:name=".Ui.Activity.GirlBookDiscussionActivity" />
-        <activity android:name=".Ui.Activity.BookDiscussionDetailActivity"></activity>
+        <activity android:name=".Ui.Activity.BookDiscussionDetailActivity" />
+        <activity android:name=".Ui.Activity.SubjectBookListDetailActivity"></activity>
     </application>
 
 </manifest>

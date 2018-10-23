@@ -23,6 +23,7 @@ public abstract class BaseRVActivity<T> extends BaseActivity implements Recycler
     protected EasyRecyclerView mRecyclerView;
 
     protected RecyclerArrayAdapter<T> mAdapter;
+    protected DividerDecoration itemDecoration;
 
     protected int start = 0;
     protected int limit = 20;
@@ -52,7 +53,7 @@ public abstract class BaseRVActivity<T> extends BaseActivity implements Recycler
 
         if (mRecyclerView != null) {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            DividerDecoration itemDecoration = new DividerDecoration(ContextCompat.getColor(this, R.color.common_divider_narrow), 1, 0, 0);//color & height & paddingLeft & paddingRight
+            itemDecoration = new DividerDecoration(ContextCompat.getColor(this, R.color.common_divider_narrow), 1, 0, 0);//color & height & paddingLeft & paddingRight
             itemDecoration.setDrawLastItem(true);//sometimes you don't want draw the divider for the last item,default is true.
             itemDecoration.setDrawHeaderFooter(false);//whether draw divider for header and footer,default is false.
             mRecyclerView.addItemDecoration(itemDecoration);

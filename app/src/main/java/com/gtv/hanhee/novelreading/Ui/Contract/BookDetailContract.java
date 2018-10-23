@@ -9,14 +9,10 @@ import java.util.List;
 
 public interface BookDetailContract {
 
-    interface View {
+    interface View extends BaseContract.BaseView {
         void showBookDetail(BookDetail data);
 
         void showHotReview(List<HotReview.Reviews> list);
-
-        void showBookDetailTags(List<BookDetail.combineTags> combineTags, int tagsSize);
-
-        void showBookDetailCategories(List<BookDetail.combineCategories> combineCategories, int categoriesSize);
 
         void showRecommendBookList(List<RecommendBookList.RecommendBook> list);
     }

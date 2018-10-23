@@ -2,6 +2,8 @@ package com.gtv.hanhee.novelreading.Ui.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatDelegate;
@@ -86,8 +88,10 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
         mPresenter.syncBookShelf();
     }
 
+
     @Override
     public void initDatas() {
+
         startService(new Intent(this, DownloadBookService.class));
         mTabContents = new ArrayList<>();
         mDatas = getResources().getStringArray(R.array.home_tabs);
@@ -159,6 +163,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
@@ -246,7 +251,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
      * @return
      */
 
-    @SuppressLint("RestrictedApi")
+
     @Override
     protected boolean onPrepareOptionsPanel(View view, Menu menu) {
         if (menu != null) {
