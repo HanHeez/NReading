@@ -89,6 +89,7 @@ public class SearchActivity extends BaseRVActivity<SearchDetail.SearchBooks> imp
     @Override
     public int getLayoutId() {
         return R.layout.activity_search;
+
     }
 
     @Override
@@ -107,6 +108,7 @@ public class SearchActivity extends BaseRVActivity<SearchDetail.SearchBooks> imp
 
     @Override
     public void initDatas() {
+
         key = getIntent().getStringExtra(INTENT_QUERY);
 
 //        mHisAdapter = new SearchHistoryAdapter(this, mHisList);

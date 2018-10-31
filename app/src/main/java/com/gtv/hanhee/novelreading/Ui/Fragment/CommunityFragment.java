@@ -45,6 +45,7 @@ public class CommunityFragment extends BaseFragment implements OnRvItemClickList
 
     @Override
     public void initDatas() {
+
         mList.clear();
         mList.add(new FindBean("Thảo luận chung", R.drawable.discuss_section));
         mList.add(new FindBean("Review truyện", R.drawable.comment_section));
@@ -81,6 +82,7 @@ public class CommunityFragment extends BaseFragment implements OnRvItemClickList
         switch (position) {
             case 0:
                 BookDiscussionActivity.startActivity(activity,true);
+                getActivity().overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 break;
 //            case 1:
 //                BookReviewActivity.startActivity(activity);

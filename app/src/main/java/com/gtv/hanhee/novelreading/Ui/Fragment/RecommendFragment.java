@@ -6,11 +6,15 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,6 +38,16 @@ import com.gtv.hanhee.novelreading.Ui.Adapter.RecommendAdapter;
 import com.gtv.hanhee.novelreading.Ui.Contract.RecommendContract;
 import com.gtv.hanhee.novelreading.Ui.Presenter.RecommendPresenter;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
+import com.scwang.smartrefresh.header.DeliveryHeader;
+import com.scwang.smartrefresh.header.WaterDropHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.header.FalsifyHeader;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -53,6 +67,8 @@ public class RecommendFragment extends BaseRVFragment<RecommendPresenter, Recomm
     TextView tvSelectAll;
     @BindView(R.id.tvDelete)
     TextView tvDelete;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
 
     private boolean isSelectAll = false;
 
@@ -95,7 +111,27 @@ public class RecommendFragment extends BaseRVFragment<RecommendPresenter, Recomm
                 ((MainActivity) activity).setCurrentItem(2);
             }
         });
+
+        refreshLayout.setRefreshHeader(new WaterDropHeader(mContext));
+//设置 Footer 为 球脉冲 样式
+        refreshLayout.setRefreshFooter(new BallPulseFooter(mContext).setSpinnerStyle(SpinnerStyle.Scale));
+
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishRefresh(300/*,false*/);
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishLoadMore(300/*,false*/);
+            }
+        });
+
+
         onRefresh();
+
     }
 
     @Override
@@ -235,11 +271,21 @@ public class RecommendFragment extends BaseRVFragment<RecommendPresenter, Recomm
             };
         }
         if (isTop) items[0] = getString(R.string.cancle_top);
-        new AlertDialog.Builder(activity)
-                .setTitle(mAdapter.getItem(position).title)
-                .setItems(items, listener)
-                .setNegativeButton(null, null)
-                .create().show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.Custom_Dialog);
+        builder.setView(R.layout.foot_view_shelf);
+        builder.setTitle(mAdapter.getItem(position).title).setItems(items, listener).setNegativeButton(null, null);
+        AlertDialog alertDialog = builder.create();
+
+        Window window = alertDialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.getAttributes().windowAnimations = R.style.SlideAnimation;
+        alertDialog.show();
+
+//        new AlertDialog.Builder(activity)
+//                .setTitle(mAdapter.getItem(position).title)
+//                .setItems(items, listener)
+//                .setNegativeButton(null, null)
+//                .create().show();
     }
 
     /**
@@ -449,5 +495,6 @@ public class RecommendFragment extends BaseRVFragment<RecommendPresenter, Recomm
 
         return false;
     }
+
 
 }

@@ -38,6 +38,7 @@ public class BookDiscussionActivity extends BaseCommuniteActivity {
 
     @Override
     public void initToolBar() {
+
         mIsDiscussion = getIntent().getBooleanExtra(INTENT_DIS, false);
         if (mIsDiscussion) {
             mCommonToolbar.setTitle("综合讨论区");
@@ -61,5 +62,11 @@ public class BookDiscussionActivity extends BaseCommuniteActivity {
     public void configViews() {
         BookDiscussionFragment fragment = BookDiscussionFragment.newInstance(mIsDiscussion ? "ramble" : "original");
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentCO, fragment).commit();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
     }
 }

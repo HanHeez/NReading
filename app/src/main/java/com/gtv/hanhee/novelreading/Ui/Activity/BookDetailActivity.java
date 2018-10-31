@@ -212,9 +212,7 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
         refreshCollectionIcon();
     }
 
-    /**
-     * 刷新收藏图标
-     */
+
     private void refreshCollectionIcon() {
         if (CollectionsManager.getInstance().isCollected(recommendBooks._id)) {
             initCollection(false);
@@ -228,9 +226,7 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
         refreshCollectionIcon();
     }
 
-    /**
-     * 每次显示8个
-     */
+
     private void showHotWord() {
         int start, end;
         if (times < tagList.size() && times + 8 <= tagList.size()) {

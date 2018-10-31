@@ -38,7 +38,7 @@ public class ACache {
     public static final int TIME_HOUR = 60 * 60;
     public static final int TIME_DAY = TIME_HOUR * 24;
     private static final int MAX_SIZE = 1000 * 1000 * 50; // 50 mb
-    private static final int MAX_COUNT = Integer.MAX_VALUE; // 不限制存放数据的数量
+    private static final int MAX_COUNT = Integer.MAX_VALUE; // Không giới hạn số lượng dữ liệu được lưu trữ
     private static Map<String, ACache> mInstanceMap = new HashMap<>();
     private ACacheManager mCache;
 
@@ -68,6 +68,7 @@ public class ACache {
     }
 
     public static ACache get(File cacheDir, long max_zise, int max_count) {
+        // lấy key là đường dẫn tên file
         ACache manager = mInstanceMap.get(cacheDir.getAbsoluteFile() + myPid());
         if (manager == null) {
             manager = new ACache(cacheDir, max_zise, max_count);

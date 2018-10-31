@@ -173,6 +173,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Log
         switch (id) {
             case R.id.action_search:
                 startActivity(new Intent(MainActivity.this, SearchActivity.class));
+
                 break;
             case R.id.action_login:
                 if (popupWindow == null) {

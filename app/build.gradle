@@ -78,6 +78,9 @@ dependencies {
     //    implementation 'me.gujun.android.taggroup:library:1.4@aar'
     //tab Layout
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
     // Bus
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation files('libs/hcicloud-5.0.jar')

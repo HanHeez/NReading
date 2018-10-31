@@ -44,7 +44,7 @@
                     android:singleLine="true"
                     android:textColor="@color/common_h1"
                     android:textSize="16sp"
-                    tools:text="武侠世界自由行" />
+                    tools:text="" />
 
                 <TextView
                     android:id="@+id/tvBookListAuthor"
@@ -56,7 +56,7 @@
                     android:singleLine="true"
                     android:textColor="@color/orange"
                     android:textSize="13sp"
-                    tools:text="w风雪 | " />
+                    tools:text=" " />
 
                 <TextView
                     android:id="@+id/tvCatgory"
@@ -68,7 +68,7 @@
                     android:singleLine="true"
                     android:textColor="@color/common_h2"
                     android:textSize="13sp"
-                    tools:text="仙侠 | " />
+                    tools:text=" " />
 
                 <TextView
                     android:id="@+id/tvWordCount"
@@ -80,7 +80,7 @@
                     android:singleLine="true"
                     android:textColor="@color/common_h2"
                     android:textSize="13sp"
-                    tools:text="594万字" />
+                    tools:text="" />
 
                 <TextView
                     android:id="@+id/tvLatelyUpdate"
@@ -93,7 +93,7 @@
                     android:singleLine="true"
                     android:textColor="@color/common_h2"
                     android:textSize="13sp"
-                    tools:text="4月前" />
+                    tools:text="" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,7 +125,7 @@
                         android:drawableLeft="@drawable/book_detail_info_search_img"
                         android:drawablePadding="5dp"
                         android:padding="10dp"
-                        android:text="开始阅读"
+                        android:text="Đọc truyện"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
@@ -158,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="追书人数"
+                        android:text="Số lượng truyện"
                         android:textColor="@color/common_h2"
                         android:textSize="13sp" />
 
@@ -187,7 +187,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="读者留存率"
+                        android:text="Tỉ lệ người đọc"
                         android:textColor="@color/common_h2"
                         android:textSize="13sp" />
 
@@ -216,7 +216,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="日更新字数"
+                        android:text="Cập nhật hàng ngày"
                         android:textColor="@color/common_h2"
                         android:textSize="13sp" />
 
